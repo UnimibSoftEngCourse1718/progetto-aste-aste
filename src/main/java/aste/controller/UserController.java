@@ -1,33 +1,29 @@
 package aste.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.gson.Gson;
-
 import aste.model.User;
-import aste.service.LoginService;
+import aste.service.UserService;
 import aste.utils.ResponseObj;
 
 @RestController
-public class LoginRestService {
+@RequestMapping("user")
+public class UserController {
 
 	@Autowired
-	LoginService loginService;	
+	UserService userService;	
 	
-	@RequestMapping(value = "/login",headers="Accept=*/*", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
-    public String validateCredentials(String user, String pwd) {
+    public ResponseObj<User> add(@RequestBody User user) {
 		ResponseObj<User> response = new ResponseObj<User>();
-		
-		if(loginService.validateCredentials(user, pwd))
-			response.setResult("ok");
-		else
-			response.setResult("ko");
-		
-        return new Gson().toJson(response);
+		userService.addUser(user);
+		response.setData(user);
+        return response;
     }
 }

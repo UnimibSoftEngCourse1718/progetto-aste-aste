@@ -1,14 +1,18 @@
 package aste.service;
 
+import java.util.List;
+
 import aste.model.User;
 
-public class UserService {
-
-    public User getDefaultUser() {
-    	
-        User user = new User();
-        user.setFirstName("Schifo");
-        user.setLastName("DoeFromREST");
-        return user;
-    }
+public interface UserService {
+	     
+	    public void addUser(User User);
+	 
+	    public List<User> getAllUsers();
+	 
+	    public void deleteUser(Integer UserId);
+	 
+	    public User getUser(int Userid);
+	 
+	    public User updateUser(User User);
 }
