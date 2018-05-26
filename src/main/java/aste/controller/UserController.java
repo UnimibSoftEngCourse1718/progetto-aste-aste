@@ -1,5 +1,7 @@
 package aste.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +26,20 @@ public class UserController {
 		ResponseObj<User> response = new ResponseObj<User>();
 		userService.addUser(user);
 		response.setData(user);
+        return response;
+    }
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json")
+	@ResponseBody
+    public ResponseObj<User> login(@RequestBody User user) {
+		ResponseObj<User> response = new ResponseObj<User>();
+		List<User> users = userService.getUserLogin(user);
+		if(!users.isEmpty()){
+			response.setResult("OK");
+			response.setData(user);
+		}
+		else
+			response.setResult("KO");	
         return response;
     }
 }

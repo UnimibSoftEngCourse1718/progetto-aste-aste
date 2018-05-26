@@ -2,43 +2,43 @@ package aste.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import aste.jparepository.UserJpaRepository;
 import aste.model.User;
-import aste.dao.UserDAO;
 
 @Service
 @Transactional
 public class UserServiceImpl implements UserService{
 	
-	 	@Autowired
-	    private UserDAO UserDAO;
+	@Resource
+	UserJpaRepository userJpaRepository;
 	 
 	    public void addUser(User User) {
-	        UserDAO.addUser(User);
+	    	userJpaRepository.saveAndFlush(User);
 	    }
 	 
 	    public List<User> getAllUsers() {
-	        return UserDAO.getAllUsers();
+	        return userJpaRepository.findAll();
 	    }
 	 
 	    public void deleteUser(Integer UserId) {
-	        UserDAO.deleteUser(UserId);
+	    	userJpaRepository.delete(UserId);
 	    }
 	 
 	    public User getUser(int empid) {
-	        return UserDAO.getUser(empid);
+	        return userJpaRepository.getOne(empid);
+	    }
+	    
+	    public List<User> getUserLogin(User user) {
+	        return userJpaRepository.findByFirstNameAndLastName(user.getFirstName(),user.getLastName());
 	    }
 	 
 	    public User updateUser(User User) {
 	        // TODO Auto-generated method stub
-	        return UserDAO.updateUser(User);
-	    }
-	 
-	    public void setUserDAO(UserDAO UserDAO) {
-	        this.UserDAO = UserDAO;
+	        return userJpaRepository.saveAndFlush(User);
 	    }
 }

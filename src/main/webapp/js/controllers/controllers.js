@@ -25,7 +25,7 @@ app.controller('MyCtrl1', ['$scope', 'UserFactory', function ($scope, UserFactor
 
 app.controller('CtrlLogin', ['$scope', 'LoginFactory', function ($scope, LoginFactory) {
 	
-	 $scope.myFunc = function() {
+	 $scope.login = function() {
 		    LoginFactory.get({}, function (response) {
 		        if(response.esito == "ok")
 		        		alert("bravo");
