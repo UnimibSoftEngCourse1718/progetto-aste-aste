@@ -1,11 +1,17 @@
 'use strict';
 
 // Declare app level module which depends on filters, and services
-angular.module('aste', ['aste.filters', 'aste.services', 'aste.directives', 'aste.controllers']).
-    config(['$routeProvider', function ($routeProvider) {
+var app = angular.module('aste', []);
 
-        $routeProvider.when('/home', {templateUrl: 'home.html'});
-        $routeProvider.otherwise({redirectTo: '/home'});
-        $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'});
-        $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller:"CtrlLogin"});
-    }]);
+	app.config([ '$routeProvider', function($routeProvider) {
+
+	$routeProvider.when('/home', {
+		templateUrl : 'page/home.html',
+		controller : 'AsteController'
+	}).when('/login', {
+		templateUrl : 'page/login.html',
+		controller : 'LoginController'
+	}).otherwise({
+		redirectTo : 'page/home'
+	});
+} ]);

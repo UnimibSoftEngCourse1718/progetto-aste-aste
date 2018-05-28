@@ -12,5 +12,5 @@ import aste.model.User;
 @Transactional
 @Repository
 public interface UserJpaRepository extends JpaRepository<User, Integer> {
-	List<User> findByFirstNameAndLastName(String firstName, String lastName);
+	List<User> findByUsernameAndPassword(String username, String password);
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import aste.model.User;
 import aste.service.UserService;
+import aste.utils.Constants;
 import aste.utils.ResponseObj;
 
 @RestController
@@ -20,7 +21,7 @@ public class UserController {
 	@Autowired
 	UserService userService;	
 	
-	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/save", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
     public ResponseObj<User> add(@RequestBody User user) {
 		ResponseObj<User> response = new ResponseObj<User>();
@@ -29,17 +30,17 @@ public class UserController {
         return response;
     }
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/find", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
     public ResponseObj<User> login(@RequestBody User user) {
 		ResponseObj<User> response = new ResponseObj<User>();
 		List<User> users = userService.getUserLogin(user);
 		if(!users.isEmpty()){
-			response.setResult("OK");
+			response.setEsito(Constants.OK);
 			response.setData(user);
 		}
 		else
-			response.setResult("KO");	
+			response.setEsito(Constants.KO);	
         return response;
     }
 }

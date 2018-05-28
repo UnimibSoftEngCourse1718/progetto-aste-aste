@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService{
 	    }
 	    
 	    public List<User> getUserLogin(User user) {
-	        return userJpaRepository.findByFirstNameAndLastName(user.getFirstName(),user.getLastName());
+	        return userJpaRepository.findByUsernameAndPassword(user.getUsername(),user.getPassword());
 	    }
 	 
 	    public User updateUser(User User) {

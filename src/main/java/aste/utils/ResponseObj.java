@@ -2,16 +2,11 @@ package aste.utils;
 
 public class ResponseObj<T> {
 
-	private String result;
+	private String esito;
 	private String error;
 	private T data;
 	
-	public String getResult() {
-		return result;
-	}
-	public void setResult(String result) {
-		this.result = result;
-	}
+
 	public String getError() {
 		return error;
 	}
@@ -23,5 +18,11 @@ public class ResponseObj<T> {
 	}
 	public void setData(T data) {
 		this.data = data;
+	}
+	public String getEsito() {
+		return esito;
+	}
+	public void setEsito(String esito) {
+		this.esito = esito;
 	}
 }
