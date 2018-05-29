@@ -1,39 +1,44 @@
-app.controller('LoginController', [ '$scope', 'UserService',
-		function($scope, UserService) {
-
+app.controller('LoginController', [
+		'$scope',
+		'$window',
+		'UserService',	
+		function($scope,$window, UserService) {
+			
+			$scope.logOut = function() {
+				$scope.loggedIn = null;
+				$window.sessionStorage.removeItem("USER");
+				alert("Log out");
+			}
+			
+			$scope.loggedIn = null;
 			$scope.getUser = function(user) {
 				var user = {};
-				user.username = $scope.username;
-				user.password = $scope.password;
+				user.username = $scope.usernameL;
+				user.password = $scope.passwordL;
 				UserService.getUser(user).then(function(response) {
-					if (response.esito == "OK")
+					if (response.esito == "OK"){
 						alert("Ti sei Loggato");
-					else
+						$scope.loggedIn = true;
+						$window.sessionStorage.setItem("USER", response.data.username);
+						$window.location.href = '#/home';
+					}else{
 						alert("Le credenziali sono errate");
+						$scope.loggedIn = null;
+					}
 				});
 			}
-			/*
+
 			$scope.saveUser = function() {
-			   $scope.submitted = true;
-			     if ($scope.userForm.$valid) {
-			       UserService.saveUser($scope.user)
-			         .then (function success(response) {
-			             $scope.message = 'User added!';
-			             $scope.errorMessage = '';
-			             $scope.getUsers();
-			             $scope.user = null;
-			             $scope.submitted = false;
-			         },
-			         function error(response) {
-			             if (response.status == 409) {
-			               $scope.errorMessage = response.data.message;
-			             }
-			             else {
-			               $scope.errorMessage = 'Error adding user!';
-			             }
-			             $scope.message = '';
-			       });
-			     }
+				var user = {};
+				user.username = $scope.usernameR;
+				user.password = $scope.passwordR;
+				UserService.saveUser(user).then(function(response) {
+					if (response.esito == "OK"){
+						alert("Ti sei Registrato");
+						$window.location.href = '#/login';
+					}else
+						alert("Errore durante la registrazione");
+				});
 			}
-			 */
+
 		} ]);

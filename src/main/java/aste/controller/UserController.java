@@ -26,6 +26,7 @@ public class UserController {
     public ResponseObj<User> add(@RequestBody User user) {
 		ResponseObj<User> response = new ResponseObj<User>();
 		userService.addUser(user);
+		response.setEsito(Constants.OK);
 		response.setData(user);
         return response;
     }
