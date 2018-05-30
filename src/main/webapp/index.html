@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="css/animate.css" />
 <link rel="stylesheet" href="css/bootstrap.css" />
 </head>
-<body>
+<body ng-app="aste">
 	<div id="basic">
 
 		<nav class="fh5co-nav" role="navigation">
@@ -25,8 +25,8 @@
 						<ul>
 							<li><a href="#/view1">view1</a></li>
 							<li><a href="#/login">Login</a></li>
-							<li ng-if="loggedIn" href="#/profilo"><a href="#">Profilo</a></li>
-							<li ng-if="loggedIn" ng-click="logOut()"><a href="#">Log
+							<li id="profilo" href="#/profilo" hidden><a href="#">Profilo</a></li>
+							<li id="logout" ng-click="logOut()" hidden><a href="#">Log
 									out</a></li>
 						</ul>
 					</div>
