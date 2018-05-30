@@ -14,6 +14,9 @@ var app = angular.module('aste', []);
 	}).when('/registrati', {
 		templateUrl : 'page/registrati.html',
 		controller : 'LoginController'
+	}).when('/profilo', {
+		templateUrl : 'page/profilo.html',
+		controller : 'LoginController'
 	}).otherwise({
 		redirectTo : '/home'
 	});
