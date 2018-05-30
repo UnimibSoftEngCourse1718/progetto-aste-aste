@@ -1,6 +1,6 @@
 package aste.utils;
 
 public class Constants {
-	public static String OK = "OK";
-	public static String KO = "KO";
+	public static final String OK = "OK";
+	public static final String KO = "KO";
 }
