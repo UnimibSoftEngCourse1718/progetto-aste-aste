@@ -6,8 +6,8 @@ var app = angular.module('aste', []);
 app.config([ '$routeProvider', function($routeProvider) {
 
 	$routeProvider.when('/home', {
-		templateUrl : 'page/home.html',/*
-				controller : 'AsteController'*/
+		templateUrl : 'page/home.html',
+		controller : 'homeController'
 	}).when('/login', {
 		templateUrl : 'page/login.html',
 		controller : 'loginController'

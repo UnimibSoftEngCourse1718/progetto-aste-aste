@@ -6,22 +6,21 @@
 			</div>
 
 		</div>
-		
-			<div class="row">
-				<div class="col-md-4 text-center animate-box">
-					<a class="work" href="#/dettaglio">
-						<div class="work-grid" style="background-image:url(img/project-1.jpg);">
-							<div class="inner">
-								<div class="desc">
-									<h3>Folding Light</h3>
-									<span class="cat">Branding</span>
-								</div>
+		<div data-ng-repeat="oggetto in listOggettiInAsta" class="row">
+			<div class="col-md-4 text-center animate-box">
+				<a class="work" href="#/dettaglio">
+					<div class="work-grid" style="background-image: url(img/project-{{$index+1}}.jpg);">
+						<div class="inner">
+							<div class="desc">
+								<h3>{{oggetto.nome}}</h3>
+								<span class="cat">{{oggetto.idCategoria.nome}}</span>
 							</div>
 						</div>
-					</a>
-				</div>				
+					</div>
+				</a>
 			</div>
-			
 		</div>
-		
+
 	</div>
+
+</div>
