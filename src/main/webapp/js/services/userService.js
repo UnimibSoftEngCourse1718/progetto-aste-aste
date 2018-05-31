@@ -1,4 +1,4 @@
-app.service('UserService',['$http', function ($http) {
+app.service('userService',['$http', function ($http) {
      
     this.saveUser = function saveUser(user){
         return $http({

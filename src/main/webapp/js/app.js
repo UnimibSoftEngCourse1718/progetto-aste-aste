@@ -10,13 +10,16 @@ app.config([ '$routeProvider', function($routeProvider) {
 				controller : 'AsteController'*/
 	}).when('/login', {
 		templateUrl : 'page/login.html',
-		controller : 'LoginController'
+		controller : 'loginController'
 	}).when('/registrati', {
 		templateUrl : 'page/registrati.html',
-		controller : 'LoginController'
+		controller : 'loginController'
 	}).when('/profilo', {
 		templateUrl : 'page/profilo.html',
-		controller : 'LoginController'
+		controller : 'loginController'
+	}).when('/dettaglio', {
+		templateUrl : 'page/dettaglio.html',
+		controller : 'dettaglioController'
 	}).otherwise({
 		redirectTo : '/home'
 	});
