@@ -11,7 +11,7 @@ import javax.persistence.NamedQuery;
 @NamedQuery(name = "User.Login",
 query = "SELECT u FROM User u WHERE firstName =:firstName "
 )
-public class User {
+public class Utente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column

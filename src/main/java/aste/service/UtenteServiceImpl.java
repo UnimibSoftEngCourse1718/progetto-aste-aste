@@ -7,21 +7,21 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import aste.jparepository.UserJpaRepository;
-import aste.model.User;
+import aste.jparepository.UtenteJpaRepository;
+import aste.model.Utente;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService{
+public class UtenteServiceImpl implements UtenteService{
 	
 	@Resource
-	UserJpaRepository userJpaRepository;
+	UtenteJpaRepository userJpaRepository;
 	 
-	    public void addUser(User User) {
+	    public void addUser(Utente User) {
 	    	userJpaRepository.saveAndFlush(User);
 	    }
 	 
-	    public List<User> getAllUsers() {
+	    public List<Utente> getAllUsers() {
 	        return userJpaRepository.findAll();
 	    }
 	 
@@ -29,15 +29,15 @@ public class UserServiceImpl implements UserService{
 	    	userJpaRepository.delete(UserId);
 	    }
 	 
-	    public User getUser(int empid) {
+	    public Utente getUser(int empid) {
 	        return userJpaRepository.getOne(empid);
 	    }
 	    
-	    public List<User> getUserLogin(User user) {
+	    public List<Utente> getUserLogin(Utente user) {
 	        return userJpaRepository.findByUsernameAndPassword(user.getUsername(),user.getPassword());
 	    }
 	 
-	    public User updateUser(User User) {
+	    public Utente updateUser(Utente User) {
 	        // TODO Auto-generated method stub
 	        return userJpaRepository.saveAndFlush(User);
 	    }
