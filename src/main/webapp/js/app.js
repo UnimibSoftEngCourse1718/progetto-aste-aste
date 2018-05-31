@@ -30,9 +30,11 @@ app.run(['$rootScope', '$window',
         	if($window.sessionStorage.getItem('USER')!= null){
         		$("#profilo").show();
         		$("#logout").show();
+        		$("#login").hide();
         	}else{
-        		$("#logout").hide();
         		$("#profilo").hide();
+        		$("#logout").hide();
+        		$("#login").show();
         	}
         }
         
@@ -40,6 +42,7 @@ app.run(['$rootScope', '$window',
 			$window.sessionStorage.removeItem("USER");
     		$("#logout").hide();
     		$("#profilo").hide();
+    		$("#login").show();
 			alert("Log out");
 		}
     }
