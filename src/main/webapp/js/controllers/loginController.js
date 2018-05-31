@@ -27,6 +27,10 @@ app.controller('loginController', [
 				var user = {};
 				user.username = $scope.usernameR;
 				user.password = $scope.passwordR;
+				user.nome = $scope.nome;
+				user.cognome = $scope.cognome;
+				user.ruolo = "reg";
+				user.credito = 0;
 				userService.saveUser(user).then(function(response) {
 					if (response.esito == "OK") {
 						alert("Ti sei Registrato");
