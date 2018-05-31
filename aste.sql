@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `aste` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
 USE `aste`;
--- MySQL dump 10.13  Distrib 8.0.11, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
 -- Host: 127.0.0.1    Database: aste
 -- ------------------------------------------------------
@@ -9,7 +9,7 @@ USE `aste`;
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
- SET NAMES utf8 ;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -23,7 +23,7 @@ USE `aste`;
 
 DROP TABLE IF EXISTS `attributo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `attributo` (
   `idAttributo` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) NOT NULL,
@@ -46,7 +46,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cat_att`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cat_att` (
   `idCat_att` int(11) NOT NULL AUTO_INCREMENT,
   `attributo_id` int(11) NOT NULL,
@@ -54,8 +54,8 @@ CREATE TABLE `cat_att` (
   PRIMARY KEY (`idCat_att`),
   KEY `fk_cat_att_attributo1_idx` (`attributo_id`),
   KEY `fk_cat_att_categoria1_idx` (`categoria_id`),
-  CONSTRAINT `fk_cat_att_attributo1` FOREIGN KEY (`attributo_id`) REFERENCES `attributo` (`idAttributo`),
-  CONSTRAINT `fk_cat_att_categoria1` FOREIGN KEY (`categoria_id`) REFERENCES `categoria` (`idCategoria`)
+  CONSTRAINT `fk_cat_att_attributo1` FOREIGN KEY (`attributo_id`) REFERENCES `attributo` (`idattributo`),
+  CONSTRAINT `fk_cat_att_categoria1` FOREIGN KEY (`categoria_id`) REFERENCES `categoria` (`idcategoria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -74,7 +74,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `categoria`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `categoria` (
   `idCategoria` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) NOT NULL,
@@ -98,7 +98,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `credito`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `credito` (
   `idCredito` int(11) NOT NULL AUTO_INCREMENT,
   `azione` tinyint(4) NOT NULL,
@@ -106,7 +106,7 @@ CREATE TABLE `credito` (
   `utente_id` int(11) NOT NULL,
   PRIMARY KEY (`idCredito`),
   KEY `fk_credito_utente_idx` (`utente_id`),
-  CONSTRAINT `fk_credito_utente` FOREIGN KEY (`utente_id`) REFERENCES `utente` (`idUtente`)
+  CONSTRAINT `fk_credito_utente` FOREIGN KEY (`utente_id`) REFERENCES `utente` (`idutente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -125,7 +125,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `offerta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `offerta` (
   `idOfferta` int(11) NOT NULL AUTO_INCREMENT,
   `stato` enum('pagato','venduto','attivo') NOT NULL DEFAULT 'attivo',
@@ -136,7 +136,7 @@ CREATE TABLE `offerta` (
   KEY `fk_offerta_oggetto1_idx` (`oggetto_id`),
   KEY `fk_offerta_utente1_idx` (`utente_id`),
   CONSTRAINT `fk_offerta_oggetto1` FOREIGN KEY (`oggetto_id`) REFERENCES `oggetto` (`idOggetto`),
-  CONSTRAINT `fk_offerta_utente1` FOREIGN KEY (`utente_id`) REFERENCES `utente` (`idUtente`)
+  CONSTRAINT `fk_offerta_utente1` FOREIGN KEY (`utente_id`) REFERENCES `utente` (`idutente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -155,7 +155,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `ogg_att`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ogg_att` (
   `idOgg_att` int(11) NOT NULL AUTO_INCREMENT,
   `valore` varchar(45) NOT NULL,
@@ -164,7 +164,7 @@ CREATE TABLE `ogg_att` (
   PRIMARY KEY (`idOgg_att`),
   KEY `fk_ogg_att_attributo1_idx` (`attributo_id`),
   KEY `fk_ogg_att_oggetto1_idx` (`oggetto_id`),
-  CONSTRAINT `fk_ogg_att_attributo1` FOREIGN KEY (`attributo_id`) REFERENCES `attributo` (`idAttributo`),
+  CONSTRAINT `fk_ogg_att_attributo1` FOREIGN KEY (`attributo_id`) REFERENCES `attributo` (`idattributo`),
   CONSTRAINT `fk_ogg_att_oggetto1` FOREIGN KEY (`oggetto_id`) REFERENCES `oggetto` (`idOggetto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -184,18 +184,18 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `oggetto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `oggetto` (
   `idOggetto` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) NOT NULL,
-  `utente_id` int(11) NOT NULL,
-  `categoria_id` int(11) NOT NULL,
+  `idUtente` int(11) NOT NULL,
+  `idCategoria` int(11) NOT NULL,
   PRIMARY KEY (`idOggetto`),
-  KEY `fk_oggetto_utente1_idx` (`utente_id`),
-  KEY `fk_oggetto_categoria1_idx` (`categoria_id`),
-  CONSTRAINT `fk_oggetto_categoria1` FOREIGN KEY (`categoria_id`) REFERENCES `categoria` (`idCategoria`),
-  CONSTRAINT `fk_oggetto_utente1` FOREIGN KEY (`utente_id`) REFERENCES `utente` (`idUtente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `fk_oggetto_utente1_idx` (`idUtente`),
+  KEY `fk_oggetto_categoria1_idx` (`idCategoria`),
+  CONSTRAINT `fk_oggetto_categoria1` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idcategoria`),
+  CONSTRAINT `fk_oggetto_utente1` FOREIGN KEY (`idUtente`) REFERENCES `utente` (`idutente`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -208,37 +208,12 @@ LOCK TABLES `oggetto` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `user`
---
-
-DROP TABLE IF EXISTS `user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `password` varchar(255) DEFAULT NULL,
-  `username` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user`
---
-
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'fra','ste');
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `utente`
 --
 
 DROP TABLE IF EXISTS `utente`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `utente` (
   `idUtente` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) NOT NULL,
@@ -249,7 +224,7 @@ CREATE TABLE `utente` (
   `ruolo` enum('reg','manager','admin') NOT NULL,
   PRIMARY KEY (`idUtente`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -270,4 +245,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-31 17:45:58
+-- Dump completed on 2018-05-31 18:50:10
