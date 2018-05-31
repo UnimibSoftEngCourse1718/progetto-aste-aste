@@ -14,7 +14,7 @@ app.service('userService',['$http', function ($http) {
     this.getUser = function getUsers(user){
         return $http({
           method: 'POST',
-          url: 'rest/utente/find',
+          url: 'rest/utente/login',
           data: user,
           headers:'Accept:application/json'
         }).then( function(response){

@@ -31,7 +31,7 @@ public class UtenteController {
         return response;
     }
 	
-	@RequestMapping(value = "/find", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
     public ResponseObj<Utente> login(@RequestBody Utente user) {
 		ResponseObj<Utente> response = new ResponseObj<Utente>();
