@@ -8,14 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
 @Entity
-@NamedQuery(name = "User.Login",
-query = "SELECT u FROM User u WHERE firstName =:firstName "
+@NamedQuery(name = "utente.Login",
+query = "SELECT u FROM Utente u"
 )
 public class Utente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private Integer id;
+	private Integer idUtente;
 	
 	@Column
     private String username;
@@ -35,10 +35,17 @@ public class Utente {
 	@Column
     private int credito;
 
+	public Integer getIdUtente() {
+		return idUtente;
+	}
+
+	public void setIdUtente(Integer idUtente) {
+		this.idUtente = idUtente;
+	}
+
 	public String getPassword() {
 		return password;
 	}
-
 
 	public void setPassword(String password) {
 		this.password = password;
