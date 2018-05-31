@@ -3,7 +3,7 @@ app.service('userService',['$http', function ($http) {
     this.saveUser = function saveUser(user){
         return $http({
           method: 'POST',
-          url: 'rest/user/save',
+          url: 'rest/utente/save',
           data: user,
           headers: 'Accept:application/json'
         }).then( function(response){
@@ -14,7 +14,7 @@ app.service('userService',['$http', function ($http) {
     this.getUser = function getUsers(user){
         return $http({
           method: 'POST',
-          url: 'rest/user/find',
+          url: 'rest/utente/find',
           data: user,
           headers:'Accept:application/json'
         }).then( function(response){

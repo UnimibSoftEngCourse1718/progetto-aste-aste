@@ -15,7 +15,7 @@ import aste.utils.Constants;
 import aste.utils.ResponseObj;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping("utente")
 public class UtenteController {
 
 	@Autowired
