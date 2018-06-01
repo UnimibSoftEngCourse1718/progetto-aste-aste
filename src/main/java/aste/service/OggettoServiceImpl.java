@@ -29,8 +29,8 @@ public class OggettoServiceImpl implements OggettoService {
 		oggettoJpaRepository.delete(oggettoId);
 	}
 
-	public Oggetto getOggetto(int oggettoId) {
-		return oggettoJpaRepository.getOne(oggettoId);
+	public Oggetto getOggetto(Integer oggettoId) {
+		return oggettoJpaRepository.findOne(oggettoId);
 	}
 
 	public Oggetto updateOggetto(Oggetto oggetto) {

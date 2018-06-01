@@ -20,7 +20,7 @@ app.config([ '$routeProvider', function($routeProvider) {
 	}).when('/aggiungiOgg', {
 		templateUrl : 'page/aggiungiOgg.html',
 		controller : 'loginController'
-	}).when('/dettaglio', {
+	}).when('/dettaglio/:id', {
 		templateUrl : 'page/dettaglio.html',
 		controller : 'dettaglioController'	
 	}).otherwise({

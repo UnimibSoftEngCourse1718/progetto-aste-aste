@@ -12,7 +12,7 @@ public interface OggettoService {
 	 
 	    public void deleteOggetto(Integer oggettoId);
 	 
-	    public Oggetto getOggetto(int oggettoId);
+	    public Oggetto getOggetto(Integer oggettoId);
 	 
 	    public Oggetto updateOggetto(Oggetto oggetto);
 	    
