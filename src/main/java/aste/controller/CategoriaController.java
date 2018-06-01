@@ -34,6 +34,16 @@ public class CategoriaController {
         return response;
     }
 	
+	@RequestMapping(value = "/findAll", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+    public ResponseObj<List<Categoria>> findAll() {
+		ResponseObj<List<Categoria>> response = new ResponseObj<List<Categoria>>();
+		List<Categoria> listCategoria = categoriaService.findAll();
+		response.setEsito(Constants.OK);
+		response.setData(listCategoria);
+        return response;
+    }
+	
 	@RequestMapping(value = "/findAttributi/{nomeCategoria}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
     public ResponseObj<List<Attributo>> findAttributi(@PathVariable String nomeCategoria) {

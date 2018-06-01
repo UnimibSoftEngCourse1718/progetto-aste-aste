@@ -15,6 +15,8 @@ public interface CategoriaService {
 	    public void deleteCategoria(Integer categoriaId);
 	 	
 	    public Categoria getCategoria(int categoriaId);
+	    
+	    public List<Categoria> findAll();
 	 
 	    public Categoria updateCategoria(Categoria categoria);	 
 	    
