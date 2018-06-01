@@ -16,7 +16,7 @@ app.config([ '$routeProvider', function($routeProvider) {
 		controller : 'loginController'
 	}).when('/profilo', {
 		templateUrl : 'page/profilo.html',
-		controller : 'loginController'
+		controller : 'utenteController'
 	}).when('/aggiungiOgg', {
 		templateUrl : 'page/aggiungiOgg.html',
 		controller : 'loginController'
