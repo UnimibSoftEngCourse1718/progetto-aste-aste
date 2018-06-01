@@ -49,4 +49,22 @@ public class OggettoController {
 		}
         return response;
     }
+	
+	@RequestMapping(value = "/findById/{id}", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+    public ResponseObj<Oggetto> findById(@PathVariable Integer id) {
+		
+		ResponseObj<Oggetto> response = new ResponseObj<Oggetto>();
+		Oggetto oggetto = oggettoService.getOggetto(id);
+		
+		if(oggetto != null) {
+			response.setEsito(Constants.OK);
+			response.setData(oggetto);
+		}
+		else {
+			response.setEsito(Constants.OK);
+			response.setMessage(Constants.NO_ELEMENTS);
+		}
+        return response;
+    }
 }

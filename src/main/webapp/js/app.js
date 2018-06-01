@@ -17,7 +17,7 @@ app.config([ '$routeProvider', function($routeProvider) {
 	}).when('/profilo', {
 		templateUrl : 'page/profilo.html',
 		controller : 'loginController'
-	}).when('/dettaglio', {
+	}).when('/dettaglio/:id', {
 		templateUrl : 'page/dettaglio.html',
 		controller : 'dettaglioController'
 	}).otherwise({

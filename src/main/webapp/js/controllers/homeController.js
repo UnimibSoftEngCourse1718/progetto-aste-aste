@@ -2,11 +2,11 @@ app.controller('homeController', [
 	'$rootScope',
 	'$scope', 
 	'$window',
-	'oggettiService',
-	function($rootScope, $scope, $window, oggettiService) {
+	'oggettoService',
+	function($rootScope, $scope, $window, oggettoService) {
 		$scope.listOggettiInAsta = [];
 		$scope.getOggettiInAsta = function(user) {
-			oggettiService.oggettiInAsta().then(
+			oggettoService.oggettiInAsta().then(
 					function(response) {
 						if (response.esito == "OK") {
 							$scope.listOggettiInAsta = response.data;
@@ -14,7 +14,7 @@ app.controller('homeController', [
 							$window.alert("Errore");
 						}
 					});
-		}
+		};
 		$scope.getOggettiInAsta();
 
 	} 
