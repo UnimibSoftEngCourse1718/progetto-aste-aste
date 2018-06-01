@@ -6,8 +6,8 @@ var app = angular.module('aste', []);
 app.config([ '$routeProvider', function($routeProvider) {
 
 	$routeProvider.when('/home', {
-		templateUrl : 'page/home.html',/*
-				controller : 'AsteController'*/
+		templateUrl : 'page/home.html',
+		controller : 'homeController'
 	}).when('/login', {
 		templateUrl : 'page/login.html',
 		controller : 'loginController'
@@ -16,11 +16,11 @@ app.config([ '$routeProvider', function($routeProvider) {
 		controller : 'loginController'
 	}).when('/profilo', {
 		templateUrl : 'page/profilo.html',
-		controller : 'loginController'
+		controller : 'utenteController'
 	}).when('/aggiungiOgg', {
 		templateUrl : 'page/aggiungiOgg.html',
 		controller : 'loginController'
-	}).when('/dettaglio', {
+	}).when('/dettaglio/:id', {
 		templateUrl : 'page/dettaglio.html',
 		controller : 'dettaglioController'	
 	}).otherwise({
@@ -49,7 +49,7 @@ app.run(['$rootScope', '$window',
     		$("#logout").hide();
     		$("#profilo").hide();
     		$("#login").show();
-			alert("Log out");
+    		$window.alert("Log out");
 		}
     }
 ]);

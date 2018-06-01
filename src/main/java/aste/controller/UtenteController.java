@@ -3,6 +3,7 @@ package aste.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,7 +16,7 @@ import aste.utils.Constants;
 import aste.utils.ResponseObj;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping("utente")
 public class UtenteController {
 
 	@Autowired
@@ -31,12 +32,26 @@ public class UtenteController {
         return response;
     }
 	
-	@RequestMapping(value = "/find", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
     public ResponseObj<Utente> login(@RequestBody Utente user) {
 		ResponseObj<Utente> response = new ResponseObj<Utente>();
 		List<Utente> users = userService.getUserLogin(user);
 		if(!users.isEmpty()){
+			response.setEsito(Constants.OK);
+			response.setData(user);
+		}
+		else
+			response.setEsito(Constants.KO);	
+        return response;
+    }
+	
+	@RequestMapping(value = "/findByNome/{username}", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+    public ResponseObj<Utente> getUtente(@PathVariable String username) {
+		ResponseObj<Utente> response = new ResponseObj<Utente>();
+		Utente user = userService.getUser(username);
+		if(user!=null){
 			response.setEsito(Constants.OK);
 			response.setData(user);
 		}

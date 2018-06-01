@@ -4,20 +4,20 @@ app.controller('loginController', [
 		'$window',
 		'userService',
 		function($rootScope,$scope, $window, userService) {
-			$scope.getUser = function(user) {
+			$scope.getUser = function() {
 				var user = {};
 				user.username = $scope.usernameL;
 				user.password = $scope.passwordL;
 				userService.getUser(user).then(
 						function(response) {
 							if (response.esito == "OK") {
-								alert("Ti sei Loggato");
+								$window.alert("Ti sei Loggato");
 								$window.sessionStorage.setItem("USER",
 										response.data.username);
 								$rootScope.getSessionUser();
 								$window.location.href = '#/home';
 							} else {
-								alert("Le credenziali sono errate");
+								$window.alert("Le credenziali sono errate");
 								$scope.loggedIn = null;
 							}
 						});
@@ -32,11 +32,12 @@ app.controller('loginController', [
 				user.ruolo = "reg";
 				user.credito = 0;
 				userService.saveUser(user).then(function(response) {
-					if (response.esito == "OK") {
-						alert("Ti sei Registrato");
+					if(response.esito == "OK"){
+						$window.alert("Ti sei Registrato");
 						$window.location.href = '#/login';
-					} else
-						alert("Errore durante la registrazione");
+					}else{
+						$window.alert("Errore durante la registrazione");
+					}
 				});
 			}
 
