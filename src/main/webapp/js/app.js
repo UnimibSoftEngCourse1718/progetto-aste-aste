@@ -17,9 +17,12 @@ app.config([ '$routeProvider', function($routeProvider) {
 	}).when('/profilo', {
 		templateUrl : 'page/profilo.html',
 		controller : 'loginController'
+	}).when('/aggiungiOgg', {
+		templateUrl : 'page/aggiungiOgg.html',
+		controller : 'loginController'
 	}).when('/dettaglio', {
 		templateUrl : 'page/dettaglio.html',
-		controller : 'dettaglioController'
+		controller : 'dettaglioController'	
 	}).otherwise({
 		redirectTo : '/home'
 	});

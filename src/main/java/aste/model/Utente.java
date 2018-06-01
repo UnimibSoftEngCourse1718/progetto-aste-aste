@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
 @Entity
-@NamedQuery(name = "User.Login",
-query = "SELECT u FROM User u WHERE firstName =:firstName "
+@NamedQuery(name = "utente.Login",
+query = "SELECT u FROM Utente u"
 )
 public class Utente {
 	@Id
