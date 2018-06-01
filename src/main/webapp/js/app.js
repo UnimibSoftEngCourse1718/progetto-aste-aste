@@ -46,7 +46,7 @@ app.run(['$rootScope', '$window',
     		$("#logout").hide();
     		$("#profilo").hide();
     		$("#login").show();
-			alert("Log out");
+    		$window.alert("Log out");
 		}
     }
 ]);

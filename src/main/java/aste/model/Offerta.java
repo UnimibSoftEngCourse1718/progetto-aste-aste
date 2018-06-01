@@ -13,6 +13,11 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Offerta {
 
+	// Constanti
+	public static final String VENDUTO = "venduto";
+	public static final String PAGATO = "pagato";
+	public static final String ATTIVO = "attivo";
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
@@ -75,8 +80,8 @@ public class Offerta {
 	}
 	
 	public enum Stato {
-	    pagato,
-	    venduto,
-	    attivo
+	    PAGATO,
+	    VENDUTO,
+	    ATTIVO
 	}
 }

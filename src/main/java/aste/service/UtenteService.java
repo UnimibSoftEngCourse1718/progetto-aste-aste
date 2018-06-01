@@ -6,15 +6,15 @@ import aste.model.Utente;
 
 public interface UtenteService {
 	     
-	    public void addUser(Utente User);
+	    public void addUser(Utente user);
 	 
 	    public List<Utente> getAllUsers();
 	 
-	    public void deleteUser(Integer UserId);
+	    public void deleteUser(Integer userId);
 	 
-	    public Utente getUser(int Userid);
+	    public Utente getUser(int userid);
 	 
-	    public Utente updateUser(Utente User);
+	    public Utente updateUser(Utente user);
 	    
 	    public List<Utente> getUserLogin(Utente user);
 }

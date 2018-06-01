@@ -17,16 +17,16 @@ public class UtenteServiceImpl implements UtenteService{
 	@Resource
 	UtenteJpaRepository userJpaRepository;
 	 
-	    public void addUser(Utente User) {
-	    	userJpaRepository.saveAndFlush(User);
+	    public void addUser(Utente user) {
+	    	userJpaRepository.saveAndFlush(user);
 	    }
 	 
 	    public List<Utente> getAllUsers() {
 	        return userJpaRepository.findAll();
 	    }
 	 
-	    public void deleteUser(Integer UserId) {
-	    	userJpaRepository.delete(UserId);
+	    public void deleteUser(Integer userId) {
+	    	userJpaRepository.delete(userId);
 	    }
 	 
 	    public Utente getUser(int empid) {
@@ -37,8 +37,7 @@ public class UtenteServiceImpl implements UtenteService{
 	        return userJpaRepository.findByUsernameAndPassword(user.getUsername(),user.getPassword());
 	    }
 	 
-	    public Utente updateUser(Utente User) {
-	        // TODO Auto-generated method stub
-	        return userJpaRepository.saveAndFlush(User);
+	    public Utente updateUser(Utente user) {
+	        return userJpaRepository.saveAndFlush(user);
 	    }
 }

@@ -39,6 +39,6 @@ public class OffertaServiceImpl implements OffertaService {
 	}
 
 	public List<Offerta> findAllOggettoInAsta() {
-		return offertaJpaRepository.findByStato(Stato.attivo);
+		return offertaJpaRepository.findByStato(Stato.ATTIVO);
 	}
 }

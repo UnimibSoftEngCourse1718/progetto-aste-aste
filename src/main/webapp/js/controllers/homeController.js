@@ -11,7 +11,7 @@ app.controller('homeController', [
 						if (response.esito == "OK") {
 							$scope.listOggettiInAsta = response.data;
 						} else {
-							alert("Errore");
+							$window.alert("Errore");
 						}
 					});
 		}
