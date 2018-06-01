@@ -7,48 +7,39 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-public class Oggetto {
+@Table(name = "cat_att")
+public class CatAtt {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private Integer idOggetto;
+	private Integer idCat_att;
 	
-	@Column
-	private String nome;
+	@ManyToOne
+	@JoinColumn(name = "idAttributo")
+	private Attributo idAttributo;
 
 	@ManyToOne
-	@JoinColumn
-	private Utente idUtente;
-
-	@ManyToOne
-	@JoinColumn
+	@JoinColumn(name = "idCategoria")
 	private Categoria idCategoria;
 
-	public Integer getIdOggetto() {
-		return idOggetto;
+	public Integer getIdCat_att() {
+		return idCat_att;
 	}
 
-	public void setIdOggetto(Integer idOggetto) {
-		this.idOggetto = idOggetto;
+	public void setIdCat_att(Integer idCat_att) {
+		this.idCat_att = idCat_att;
 	}
 
-	public String getNome() {
-		return nome;
+	public Attributo getIdAttributo() {
+		return idAttributo;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public Utente getIdUtente() {
-		return idUtente;
-	}
-
-	public void setIdUtente(Utente idUtente) {
-		this.idUtente = idUtente;
+	public void setIdAttributo(Attributo idAttributo) {
+		this.idAttributo = idAttributo;
 	}
 
 	public Categoria getIdCategoria() {
@@ -58,5 +49,7 @@ public class Oggetto {
 	public void setIdCategoria(Categoria idCategoria) {
 		this.idCategoria = idCategoria;
 	}
+	
+
 	
 }

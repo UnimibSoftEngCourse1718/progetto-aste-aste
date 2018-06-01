@@ -5,10 +5,9 @@ import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import aste.model.Categoria;
+import aste.model.Attributo;
 
 @Transactional
 @Repository
-public interface CategoriaJpaRepository extends JpaRepository<Categoria, Integer> {
-	Categoria findFirstByNome(String nome);
+public interface AttributoJpaRepository extends JpaRepository<Attributo, Integer> {
 }
