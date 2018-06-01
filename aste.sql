@@ -129,7 +129,7 @@ DROP TABLE IF EXISTS `offerta`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `offerta` (
   `idOfferta` int(11) NOT NULL AUTO_INCREMENT,
-  `stato` enum('pagato','venduto','attivo') NOT NULL DEFAULT 'attivo',
+  `stato` enum('PAGATO','VENDUTO','ATTIVO') NOT NULL DEFAULT 'ATTIVO',
   `importo` float DEFAULT NULL,
   `idOggetto` int(11) NOT NULL,
   `idUtente` int(11) NOT NULL,
@@ -147,7 +147,7 @@ CREATE TABLE `offerta` (
 
 LOCK TABLES `offerta` WRITE;
 /*!40000 ALTER TABLE `offerta` DISABLE KEYS */;
-INSERT INTO `offerta` VALUES (2,'attivo',10,2,1);
+INSERT INTO `offerta` VALUES (2,'ATTIVO',10,2,1);
 /*!40000 ALTER TABLE `offerta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -249,4 +249,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-01 10:32:19
+-- Dump completed on 2018-06-01 10:44:56
