@@ -13,4 +13,6 @@ import aste.model.Utente;
 @Repository
 public interface UtenteJpaRepository extends JpaRepository<Utente, Integer> {
 	List<Utente> findByUsernameAndPassword(String username, String password);
+
+	Utente findByUsername(String username);
 }
