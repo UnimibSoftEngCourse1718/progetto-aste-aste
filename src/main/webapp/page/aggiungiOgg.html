@@ -1,4 +1,14 @@
-
-<div style="text-align:center">
-	<h3>Aggiungi oggetto</h3>
+<div class="container">
+	<div class="row top-line animate-box">
+		<div class="col-md-7 col-md-push-5 text-left intro">
+			<h2>Aggiungi oggetto</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-7 col-md-push-5 text-left intro">
+			Categoria: <select>
+				<option ng-repeat="x in listCategoria">{{x.nome}}</option>
+			</select>
+		</div>
+	</div>
 </div>

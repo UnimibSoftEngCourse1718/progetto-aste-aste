@@ -57,4 +57,8 @@ public class CategoriaServiceImpl implements CategoriaService {
 	public List<Attributo> findAttributi(String nomeCategoria) {
 		return categoriaJpaRepository.findFirstByNome(nomeCategoria).getAttributi();
 	}
+
+	public List<Categoria> findAll() {
+		return categoriaJpaRepository.findAll();
+	}
 }
