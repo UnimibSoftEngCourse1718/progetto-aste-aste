@@ -19,6 +19,7 @@ public class OffertaServiceImpl implements OffertaService {
 	OffertaJpaRepository offertaJpaRepository;
 
 	public void addOfferta(Offerta offerta) {
+		// Fare il controllo se esiste già un'offerta per l'oggetto
 		offertaJpaRepository.saveAndFlush(offerta);
 	}
 

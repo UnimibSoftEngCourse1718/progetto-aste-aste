@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import aste.model.Oggetto;
+import aste.model.Utente;
 import aste.service.OggettoService;
 import aste.utils.Constants;
 import aste.utils.ResponseObj;

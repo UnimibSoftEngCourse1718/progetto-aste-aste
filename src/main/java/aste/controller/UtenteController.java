@@ -1,7 +1,5 @@
 package aste.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,10 +34,10 @@ public class UtenteController {
 	@ResponseBody
     public ResponseObj<Utente> login(@RequestBody Utente user) {
 		ResponseObj<Utente> response = new ResponseObj<Utente>();
-		List<Utente> users = userService.getUserLogin(user);
-		if(!users.isEmpty()){
+		Utente returnUser = userService.getUserLogin(user);
+		if(returnUser != null) {
 			response.setEsito(Constants.OK);
-			response.setData(user);
+			response.setData(returnUser);
 		}
 		else
 			response.setEsito(Constants.KO);	

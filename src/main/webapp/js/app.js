@@ -22,18 +22,18 @@ app.config([ '$routeProvider', function($routeProvider) {
 		controller : 'loginController'
 	}).when('/dettaglio/:id', {
 		templateUrl : 'page/dettaglio.html',
-		controller : 'dettaglioController'	
+		controller : 'dettaglioController'
 	}).otherwise({
 		redirectTo : '/home'
 	});
 	
 
-} ]);
+}]);
 
 app.run(['$rootScope', '$window',
     function($rootScope, $window){
         $rootScope.getSessionUser = function(){
-        	if($window.sessionStorage.getItem('USER')!= null){
+        	if($window.sessionStorage.getItem('USER_USERNAME')!= null){
         		$("#profilo").show();
         		$("#logout").show();
         		$("#login").hide();
@@ -45,11 +45,12 @@ app.run(['$rootScope', '$window',
         }
         
         $rootScope.logOut = function() {
-			$window.sessionStorage.removeItem("USER");
-    		$("#logout").hide();
-    		$("#profilo").hide();
-    		$("#login").show();
-    		$window.alert("Log out");
+			$window.sessionStorage.removeItem("USER_USERNAME");
+			$window.sessionStorage.removeItem("USER_ID");
+	    		$("#logout").hide();
+	    		$("#profilo").hide();
+	    		$("#login").show();
+	    		$window.alert("Log out");
 		}
     }
 ]);
