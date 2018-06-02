@@ -5,7 +5,7 @@ app.controller('utenteController', [
 	function($scope, $window, userService) {
 		$scope.user = {};
 		$scope.getProfile = function() {
-			userService.getUtente($window.sessionStorage.USER).then(
+			userService.getUtente($window.sessionStorage.USER_USERNAME).then(
 					function(response) {
 						if (response.esito == "OK") {
 							$scope.user = response.data;

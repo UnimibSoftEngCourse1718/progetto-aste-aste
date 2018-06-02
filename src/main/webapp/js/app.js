@@ -22,13 +22,13 @@ app.config([ '$routeProvider', function($routeProvider) {
 		controller : 'loginController'
 	}).when('/dettaglio/:id', {
 		templateUrl : 'page/dettaglio.html',
-		controller : 'dettaglioController'	
+		controller : 'dettaglioController'
 	}).otherwise({
 		redirectTo : '/home'
 	});
 	
 
-} ]);
+}]);
 
 app.run(['$rootScope', '$window',
     function($rootScope, $window){

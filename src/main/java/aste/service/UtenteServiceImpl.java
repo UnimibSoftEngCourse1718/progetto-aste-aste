@@ -37,7 +37,7 @@ public class UtenteServiceImpl implements UtenteService{
 	        return userJpaRepository.findByUsername(username);
 	    }
 	    
-	    public List<Utente> getUserLogin(Utente user) {
+	    public Utente getUserLogin(Utente user) {
 	        return userJpaRepository.findByUsernameAndPassword(user.getUsername(),user.getPassword());
 	    }
 	 
