@@ -1,11 +1,15 @@
 package aste.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
 import aste.jparepository.CatAttJpaRepository;
+import aste.model.Attributo;
 import aste.model.CatAtt;
 
 @Service
@@ -23,5 +27,10 @@ public class CatAttServiceImpl implements CatAttService {
 		catAttJpaRepository.delete(catattId);
 	}
 
-	
+	public List<Attributo> findAttributiByCategoria(Integer idCategoria) {
+		List<Attributo> attributi = new ArrayList<Attributo>();
+		for(CatAtt catAtt : catAttJpaRepository.findByCategoria(idCategoria))
+			attributi.add(catAtt.getAttributo());
+		return attributi;
+	}	
 }

@@ -20,12 +20,12 @@ public class Oggetto {
 	private String nome;
 
 	@ManyToOne
-	@JoinColumn
-	private Utente idUtente;
+	@JoinColumn(name = "idUtente")
+	private Utente utente;
 
 	@ManyToOne
-	@JoinColumn
-	private Categoria idCategoria;
+	@JoinColumn(name = "idCategoria")
+	private Categoria categoria;
 
 	public Integer getIdOggetto() {
 		return idOggetto;
@@ -43,20 +43,21 @@ public class Oggetto {
 		this.nome = nome;
 	}
 
-	public Utente getIdUtente() {
-		return idUtente;
+	public Utente getUtente() {
+		return utente;
 	}
 
-	public void setIdUtente(Utente idUtente) {
-		this.idUtente = idUtente;
+	public void setUtente(Utente utente) {
+		this.utente = utente;
 	}
 
-	public Categoria getIdCategoria() {
-		return idCategoria;
+	public Categoria getCategoria() {
+		return categoria;
 	}
 
-	public void setIdCategoria(Categoria idCategoria) {
-		this.idCategoria = idCategoria;
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
+
 	
 }

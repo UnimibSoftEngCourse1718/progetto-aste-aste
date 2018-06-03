@@ -3,8 +3,7 @@ app.controller('oggettoController', [
 	'$window',
 	'oggettoService',
 	'categoriaService',
-	'$routeParams',
-	function($scope, $window, oggettoService,categoriaService, $routeParams) {
+	function($scope, $window, oggettoService,categoriaService) {
 		
 		$scope.listCategoria = {};
 		$scope.getListCategoria = function() {

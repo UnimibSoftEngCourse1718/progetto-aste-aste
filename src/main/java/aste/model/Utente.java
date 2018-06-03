@@ -1,11 +1,18 @@
 package aste.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @NamedQuery(name = "utente.Login",
@@ -34,6 +41,10 @@ public class Utente {
 	
 	@Column
     private int credito;
+	
+	@OneToMany(cascade = CascadeType.ALL,mappedBy="utente")
+	@Fetch(FetchMode.JOIN)	
+    public List<Oggetto> oggetto;
 
 	public Integer getIdUtente() {
 		return idUtente;
