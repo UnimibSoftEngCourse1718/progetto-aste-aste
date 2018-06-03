@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @NamedQuery(name = "utente.Login",
 query = "SELECT u FROM Utente u"
@@ -44,6 +46,7 @@ public class Utente {
 	
 	@OneToMany(cascade = CascadeType.ALL,mappedBy="utente")
 	@Fetch(FetchMode.JOIN)	
+	@JsonManagedReference
     public List<Oggetto> oggetto;
 
 	public Integer getIdUtente() {

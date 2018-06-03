@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Oggetto {
 
@@ -29,6 +31,7 @@ public class Oggetto {
 
 	@ManyToOne
 	@JoinColumn(name = "idUtente")
+	@JsonBackReference
 	private Utente utente;
 
 	@ManyToOne
