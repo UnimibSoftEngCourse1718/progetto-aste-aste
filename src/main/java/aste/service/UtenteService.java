@@ -12,9 +12,11 @@ public interface UtenteService {
 	 
 	    public void deleteUser(Integer userId);
 	 
-	    public Utente getUser(int userid);
+	    public Utente getUser(Integer userid);
 	 
+	    public Utente getUser(String username);
+	    
 	    public Utente updateUser(Utente user);
 	    
-	    public List<Utente> getUserLogin(Utente user);
+	    public Utente getUserLogin(Utente user);
 }

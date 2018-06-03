@@ -32,4 +32,16 @@ app.service('oggettoService',['$http', function ($http) {
             return response.data;
         });
     }
+    
+    // Chiamata a backend per offettuare 
+    this.doOfferta = function doOfferta(offerta) {
+        return $http({
+          method: 'POST',
+          url: 'rest/offerta/save',
+          data: offerta,
+          headers: 'Accept:application/json'
+        }).then( function(response){
+            return response.data;
+        });
+    }
 }]);

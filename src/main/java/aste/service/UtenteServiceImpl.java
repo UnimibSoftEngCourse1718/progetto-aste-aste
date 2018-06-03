@@ -29,11 +29,15 @@ public class UtenteServiceImpl implements UtenteService{
 	    	userJpaRepository.delete(userId);
 	    }
 	 
-	    public Utente getUser(int empid) {
-	        return userJpaRepository.getOne(empid);
+	    public Utente getUser(Integer empid) {
+	        return userJpaRepository.findOne(empid);
 	    }
 	    
-	    public List<Utente> getUserLogin(Utente user) {
+	    public Utente getUser(String username) {
+	        return userJpaRepository.findByUsername(username);
+	    }
+	    
+	    public Utente getUserLogin(Utente user) {
 	        return userJpaRepository.findByUsernameAndPassword(user.getUsername(),user.getPassword());
 	    }
 	 

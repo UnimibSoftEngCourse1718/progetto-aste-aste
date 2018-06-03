@@ -1,8 +1,7 @@
 package aste.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,8 +34,22 @@ public class UtenteController {
 	@ResponseBody
     public ResponseObj<Utente> login(@RequestBody Utente user) {
 		ResponseObj<Utente> response = new ResponseObj<Utente>();
-		List<Utente> users = userService.getUserLogin(user);
-		if(!users.isEmpty()){
+		Utente returnUser = userService.getUserLogin(user);
+		if(returnUser != null) {
+			response.setEsito(Constants.OK);
+			response.setData(returnUser);
+		}
+		else
+			response.setEsito(Constants.KO);	
+        return response;
+    }
+	
+	@RequestMapping(value = "/findByNome/{username}", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+    public ResponseObj<Utente> getUtente(@PathVariable String username) {
+		ResponseObj<Utente> response = new ResponseObj<Utente>();
+		Utente user = userService.getUser(username);
+		if(user!=null){
 			response.setEsito(Constants.OK);
 			response.setData(user);
 		}
