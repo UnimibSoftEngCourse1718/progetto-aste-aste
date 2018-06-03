@@ -12,8 +12,8 @@ app.controller('loginController', [
 						function(response) {
 							if (response.esito == "OK") {
 								$window.alert("Ti sei Loggato");
-								$window.sessionStorage.setItem("USER",
-										response.data.username);
+								$window.sessionStorage.setItem("USER_ID", response.data.idUtente);
+								$window.sessionStorage.setItem("USER_USERNAME", response.data.username);
 								$rootScope.getSessionUser();
 								$window.location.href = '#/home';
 							} else {
