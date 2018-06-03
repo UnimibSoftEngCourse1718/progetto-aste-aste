@@ -6,9 +6,18 @@
 	</div>
 	<div class="row">
 		<div class="col-md-7 col-md-push-5 text-left intro">
-			Categoria: <select>
-				<option ng-repeat="x in listCategoria">{{x.nome}}</option>
+			Categoria: <select data-ng-model="categoria" data-ng-change="caricaAttributi()" data-ng-options="o.nome for o in listCategoria">
 			</select>
 		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-7 col-md-push-5 text-left intro">
+			<span data-ng-repeat="x in listAttributi" >
+				{{x.nome}}<input type="text" data-ng-model="values['attributo_' + $index]"><br>
+			</span>
+		</div>		
+	</div>
+	<div class="row">
+		<button data-ng-click="aggiungiOggetto()">Aggiungi</button>	
 	</div>
 </div>

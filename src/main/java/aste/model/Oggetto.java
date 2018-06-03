@@ -1,12 +1,20 @@
 package aste.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class Oggetto {
@@ -26,6 +34,17 @@ public class Oggetto {
 	@ManyToOne
 	@JoinColumn(name = "idCategoria")
 	private Categoria categoria;
+	
+	@ManyToMany(cascade = { 
+	        CascadeType.PERSIST, 
+	        CascadeType.MERGE
+	    })
+	    @JoinTable(name = "ogg_att",
+	        joinColumns = @JoinColumn(name = "idOggetto"),
+	        inverseJoinColumns = @JoinColumn(name = "idAttributo")
+	    )
+	@Fetch(FetchMode.JOIN)	
+	private List<Attributo> attributi;
 
 	public Integer getIdOggetto() {
 		return idOggetto;
