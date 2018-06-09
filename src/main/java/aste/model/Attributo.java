@@ -1,14 +1,10 @@
 package aste.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 
 @Entity
 public class Attributo {
@@ -21,16 +17,6 @@ public class Attributo {
 	@Column
 	private String nome;
 
-	@ManyToMany(mappedBy = "attributi")
-    private List<Categoria> categorie = new ArrayList<Categoria>();
-
-	public List<Categoria> getCategorie() {
-		return categorie;
-	}
-
-	public void setCategorie(List<Categoria> categorie) {
-		this.categorie = categorie;
-	}
 
 	public Integer getIdAttributo() {
 		return idAttributo;

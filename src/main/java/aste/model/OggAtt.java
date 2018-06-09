@@ -12,29 +12,33 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-@Table(name = "cat_att")
-public class CatAtt {
+@Table(name = "ogg_att")
+public class OggAtt {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private Integer idCat_att;
+	private Integer idOgg_att;
+	
+	@Column
+	private String valore;
 	
 	@ManyToOne
 	@JoinColumn(name = "idAttributo")
 	private Attributo attributo;
 
 	@ManyToOne
-	@JoinColumn(name = "idCategoria")
+	@JoinColumn(name = "idOggetto")
 	@JsonBackReference
-	private Categoria categoria;
+	private Oggetto oggetto;
 
-	public Integer getIdCat_att() {
-		return idCat_att;
+
+	public String getValore() {
+		return valore;
 	}
 
-	public void setIdCat_att(Integer idCat_att) {
-		this.idCat_att = idCat_att;
+	public void setValore(String valore) {
+		this.valore = valore;
 	}
 
 	public Attributo getAttributo() {
@@ -45,11 +49,19 @@ public class CatAtt {
 		this.attributo = attributo;
 	}
 
-	public Categoria getCategoria() {
-		return categoria;
+	public Integer getIdOgg_att() {
+		return idOgg_att;
 	}
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}	
+	public void setIdOgg_att(Integer idOgg_att) {
+		this.idOgg_att = idOgg_att;
+	}
+
+	public Oggetto getOggetto() {
+		return oggetto;
+	}
+
+	public void setOggetto(Oggetto oggetto) {
+		this.oggetto = oggetto;
+	}
 }
