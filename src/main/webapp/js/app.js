@@ -43,7 +43,7 @@ app.run(['$rootScope', '$window',
         		$("#login").show();
         	}
         }
-        
+        $rootScope.getSessionUser();
         $rootScope.logOut = function() {
 			$window.sessionStorage.removeItem("USER_USERNAME");
 			$window.sessionStorage.removeItem("USER_ID");

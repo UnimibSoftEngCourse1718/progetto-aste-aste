@@ -22,7 +22,7 @@ app.controller('loginController', [
 							}
 						});
 			}
-
+			
 			$scope.saveUser = function() {
 				var user = {};
 				user.username = $scope.usernameR;
