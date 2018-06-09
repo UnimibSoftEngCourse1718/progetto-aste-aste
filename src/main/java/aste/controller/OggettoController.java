@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import aste.bean.OggettoAttributiBean;
 import aste.model.Oggetto;
-import aste.model.Utente;
 import aste.service.OggettoService;
 import aste.utils.Constants;
 import aste.utils.ResponseObj;
@@ -25,11 +25,11 @@ public class OggettoController {
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
-    public ResponseObj<Oggetto> save(@RequestBody Oggetto oggetto) {
+    public ResponseObj<Oggetto> save(@RequestBody OggettoAttributiBean oggettoAttributiBean) {
 		ResponseObj<Oggetto> response = new ResponseObj<Oggetto>();
-		oggettoService.addOggetto(oggetto);
+		oggettoService.addOggetto(oggettoAttributiBean);
 		response.setEsito(Constants.OK);
-		response.setData(oggetto);
+		response.setData(oggettoAttributiBean.getOggetto());
         return response;
     }
 	

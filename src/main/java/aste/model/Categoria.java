@@ -1,6 +1,5 @@
 package aste.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity
 public class Categoria {
 
@@ -23,10 +25,21 @@ public class Categoria {
 
 	@Column
 	private String nome;
-
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "cat_att", joinColumns = @JoinColumn(name = "idCategoria"), inverseJoinColumns = @JoinColumn(name = "idAttributo"))
-	private List<Attributo> attributi = new ArrayList<Attributo>();
+	
+	@ManyToMany(cascade = { 
+	        CascadeType.PERSIST, 
+	        CascadeType.MERGE
+	    })
+	    @JoinTable(name = "cat_att",
+	        joinColumns = @JoinColumn(name = "idCategoria"),
+	        inverseJoinColumns = @JoinColumn(name = "idAttributo")
+	    )
+	@Fetch(FetchMode.JOIN)	
+	private List<Attributo> attributi;
+	
+	public Integer getIdCategoria() {
+		return idCategoria;
+	}	
 
 	public List<Attributo> getAttributi() {
 		return attributi;
@@ -35,10 +48,6 @@ public class Categoria {
 	public void setAttributi(List<Attributo> attributi) {
 		this.attributi = attributi;
 	}
-	
-	public Integer getIdCategoria() {
-		return idCategoria;
-	}	
 
 	public void setIdCategoria(Integer idCategoria) {
 		this.idCategoria = idCategoria;

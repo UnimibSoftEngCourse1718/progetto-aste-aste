@@ -26,35 +26,32 @@ public class CategoriaServiceImpl implements CategoriaService {
 	
 	@Autowired
 	CatAttService catAttService;
-
+	
+	
 	public void addCategoria(CategoriaAttributiBean categoriaAttributiBean) {
 		categoriaJpaRepository.saveAndFlush(categoriaAttributiBean.getCategoria());
 		for(Attributo attributo : categoriaAttributiBean.getAttributi()){
 			attributoService.addAttributo(attributo);
 			CatAtt catAtt = new CatAtt();
-			catAtt.setIdAttributo(attributo);
-			catAtt.setIdCategoria(categoriaAttributiBean.getCategoria());
+			catAtt.setAttributo(attributo);
+			catAtt.setCategoria(categoriaAttributiBean.getCategoria());
 			catAttService.addCatAtt(catAtt);
 		}
 	}
-
-	public List<Categoria> getAllOggetti() {
-		return categoriaJpaRepository.findAll();
-	}
-
+	
 	public void deleteCategoria(Integer categoriaId) {
 		categoriaJpaRepository.delete(categoriaId);	
 	}
-
+	
 	public Categoria getCategoria(int categoriaId) {
-		return categoriaJpaRepository.getOne(categoriaId);
+		return categoriaJpaRepository.findOne(categoriaId);
 	}
 
 	public Categoria updateCategoria(Categoria categoria) {
 		return categoriaJpaRepository.saveAndFlush(categoria);
 	}
 	
-	public List<Attributo> findAttributi(String nomeCategoria) {
-		return categoriaJpaRepository.findFirstByNome(nomeCategoria).getAttributi();
+	public List<Categoria> findAll() {
+		return categoriaJpaRepository.findAll();
 	}
 }
