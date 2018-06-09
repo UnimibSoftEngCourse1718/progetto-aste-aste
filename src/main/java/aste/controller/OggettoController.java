@@ -33,6 +33,16 @@ public class OggettoController {
         return response;
     }
 	
+	@RequestMapping(value = "/findAll", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+    public ResponseObj<List<Oggetto>> findAll() {
+		ResponseObj<List<Oggetto>> response = new ResponseObj<List<Oggetto>>();
+		List<Oggetto> oggetti = oggettoService.getAllOggetti();
+		response.setEsito(Constants.OK);
+		response.setData(oggetti);
+        return response;
+    }
+	
 	@RequestMapping(value = "/findByNome/{nome}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
     public ResponseObj<List<Oggetto>> findByNome(@PathVariable String nome) {

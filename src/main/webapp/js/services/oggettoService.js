@@ -22,6 +22,17 @@ app.service('oggettoService',['$http', function ($http) {
         });
     }
     
+    //Aggiunge oggetto
+    this.findAll = function findAll(){
+        return $http({
+          method: 'GET',
+          url: 'rest/oggetto/findAll',
+          headers: 'Accept:application/json'
+        }).then( function(response){
+            return response.data;
+        });
+    }
+    
     // Chiamata a backend per prendere un oggetto dato l'id
     this.findOggetto = function findOggetto(id) {
         return $http({
