@@ -37,7 +37,7 @@ app.controller('dettaglioController', [
 			
 			oggettoService.doOfferta(offerta).then(
 					function(response) {
-						if(response.esito == "OK"){
+						if(response.esito == "OK") {
 							$window.alert("Offerta effattuata correttamente");
 						} else{
 							$window.alert("Errore durante l'offerta: " + response.message);
