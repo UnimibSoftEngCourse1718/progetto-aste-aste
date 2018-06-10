@@ -40,7 +40,7 @@ app.controller('dettaglioController', [
 						if(response.esito == "OK"){
 							$window.alert("Offerta effattuata correttamente");
 						} else{
-							$window.alert("Errore durante l'offerta");
+							$window.alert("Errore durante l'offerta: " + response.message);
 						}
 					});
 		}

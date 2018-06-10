@@ -3,10 +3,11 @@ package aste.service;
 import java.util.List;
 
 import aste.model.Offerta;
+import aste.model.Oggetto;
 
 public interface OffertaService {
 	     
-	    public void addOfferta(Offerta offerta);
+	    public void addOfferta(Offerta offerta) throws Exception;
 	 
 	    public List<Offerta> getAllOggetti();
 	 
@@ -17,5 +18,7 @@ public interface OffertaService {
 	    public Offerta updateOfferta(Offerta offerta);
 	    
 	    public List<Offerta> findAllOggettoInAsta();
+	    
+	    public Offerta getOffertaByOggetto(Oggetto idOggetto);
 	    
 }
