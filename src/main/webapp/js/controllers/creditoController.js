@@ -35,18 +35,22 @@ app.controller('creditoController', [
 		};
 		
 		$scope.changeCredito = function(user) {
-			var credito = {};
-			credito.idUtente = utente;
-			credito.azione = 0;
-			credito.quantita = $scope.cambiaCredito;
-			creditoService.addCredito(credito).then(
-					function(response) {
-						if (response.esito == "OK") {
-							$scope.getCredito();
-						} else {
-							$window.alert("Errore");
-						}
-					});
+			if($scope.credito - $scope.cambiaCredito<0)
+				$window.alert("Non hai abbastanza crediti");
+			else{
+				var credito = {};
+				credito.idUtente = utente;
+				credito.azione = 0;
+				credito.quantita = $scope.cambiaCredito;
+				creditoService.addCredito(credito).then(
+						function(response) {
+							if (response.esito == "OK") {
+								$scope.getCredito();
+							} else {
+								$window.alert("Errore");
+							}
+						});
+			}
 		};
 
 	} 
