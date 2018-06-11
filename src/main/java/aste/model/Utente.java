@@ -42,7 +42,7 @@ public class Utente {
     private String ruolo;
 	
 	@Column
-    private int credito;
+    private Float credito;
 	
 	@OneToMany(cascade = CascadeType.ALL,mappedBy="utente")
 	@Fetch(FetchMode.JOIN)	
@@ -105,14 +105,12 @@ public class Utente {
 		this.ruolo = ruolo;
 	}
 
-
-	public int getCredito() {
+	public Float getCredito() {
 		return credito;
 	}
 
-
-	public void setCredito(int credito) {
+	public void setCredito(Float credito) {
 		this.credito = credito;
 	}
-	
+
 }
