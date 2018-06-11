@@ -23,7 +23,7 @@ app.controller('creditoController', [
 			var credito = {};
 			credito.idUtente = utente;
 			credito.azione = 1;
-			credito.quantita = $scope.cambiaCredito;
+			credito.quantita = $scope.aggCredito;
 			creditoService.addCredito(credito).then(
 					function(response) {
 						if (response.esito == "OK") {
@@ -38,7 +38,7 @@ app.controller('creditoController', [
 			var credito = {};
 			credito.idUtente = utente;
 			credito.azione = 0;
-			credito.quantita = $scope.aggCredito;
+			credito.quantita = $scope.cambiaCredito;
 			creditoService.addCredito(credito).then(
 					function(response) {
 						if (response.esito == "OK") {
