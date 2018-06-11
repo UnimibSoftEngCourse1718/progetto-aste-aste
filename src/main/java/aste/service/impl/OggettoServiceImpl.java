@@ -1,4 +1,4 @@
-package aste.service;
+package aste.service.impl;
 
 import java.util.Iterator;
 import java.util.List;
@@ -15,6 +15,8 @@ import aste.jparepository.OggettoJpaRepository;
 import aste.model.Attributo;
 import aste.model.OggAtt;
 import aste.model.Oggetto;
+import aste.service.OggAttService;
+import aste.service.OggettoService;
 
 @Service
 @Transactional
@@ -34,7 +36,7 @@ public class OggettoServiceImpl implements OggettoService {
 		while (it.hasNext()) {
 			// Utilizza il nuovo elemento (coppia chiave-valore)
 			// dell'hashmap
-			Map.Entry<Integer, String> entry = (Map.Entry<Integer, String>) it.next();
+			Map.Entry<Integer, String> entry = it.next();
 			OggAtt oggAtt = new OggAtt();
 			Attributo attributo = new Attributo();
 			attributo.setIdAttributo(entry.getKey());

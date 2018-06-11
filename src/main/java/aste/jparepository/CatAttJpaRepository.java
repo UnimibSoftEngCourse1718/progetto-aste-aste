@@ -12,5 +12,5 @@ import aste.model.CatAtt;
 @Transactional
 @Repository
 public interface CatAttJpaRepository extends JpaRepository<CatAtt, Integer> {
-	List<CatAtt> findByCategoria(Integer Categoria);
+	List<CatAtt> findByCategoria(Integer categoria);
 }

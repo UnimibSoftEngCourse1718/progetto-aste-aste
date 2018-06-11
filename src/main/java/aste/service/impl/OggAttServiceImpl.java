@@ -1,4 +1,4 @@
-package aste.service;
+package aste.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import aste.jparepository.OggAttJpaRepository;
 import aste.model.Attributo;
 import aste.model.OggAtt;
+import aste.service.OggAttService;
 
 @Service
 @Transactional

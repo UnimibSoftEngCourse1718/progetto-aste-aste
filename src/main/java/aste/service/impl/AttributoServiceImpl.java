@@ -1,4 +1,4 @@
-package aste.service;
+package aste.service.impl;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import aste.jparepository.AttributoJpaRepository;
 import aste.model.Attributo;
+import aste.service.AttributoService;
 
 @Service
 @Transactional

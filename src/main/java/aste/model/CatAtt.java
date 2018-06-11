@@ -17,8 +17,8 @@ public class CatAtt {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
-	private Integer idCat_att;
+	@Column(name="idCat_att")
+	private Integer idCatAtt;
 	
 	@ManyToOne
 	@JoinColumn(name = "idAttributo")
@@ -29,12 +29,12 @@ public class CatAtt {
 	@JsonBackReference
 	private Categoria categoria;
 
-	public Integer getIdCat_att() {
-		return idCat_att;
+	public Integer getIdCatAtt() {
+		return idCatAtt;
 	}
 
-	public void setIdCat_att(Integer idCat_att) {
-		this.idCat_att = idCat_att;
+	public void setIdCatAtt(Integer idCatAtt) {
+		this.idCatAtt = idCatAtt;
 	}
 
 	public Attributo getAttributo() {
