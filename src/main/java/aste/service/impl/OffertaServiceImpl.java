@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import aste.jparepository.OffertaJpaRepository;
 import aste.model.Offerta;
 import aste.model.Offerta.Stato;
+import aste.model.Utente;
 import aste.service.OffertaService;
 
 @Service
@@ -43,4 +44,11 @@ public class OffertaServiceImpl implements OffertaService {
 	public List<Offerta> findAllOggettoInAsta() {
 		return offertaJpaRepository.findByStato(Stato.ATTIVO);
 	}
+
+	public List<Offerta> findAllOfferteByUtente(Utente idUtente) {
+		return offertaJpaRepository.findByIdUtente(idUtente);
+	}
+	
+	
+	
 }
