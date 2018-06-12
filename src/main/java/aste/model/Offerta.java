@@ -1,5 +1,7 @@
 package aste.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Offerta {
@@ -25,6 +29,10 @@ public class Offerta {
 	@Column
 	private Float importo;
 	
+	@Column
+	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date data;
+
 	@ManyToOne
 	@JoinColumn(name="idOggetto")
 	private Oggetto idOggetto;
@@ -40,7 +48,14 @@ public class Offerta {
 	public void setIdOfferta(Integer idOfferta) {
 		this.idOfferta = idOfferta;
 	}
+	
+	public Date getData() {
+		return data;
+	}
 
+	public void setData(Date data) {
+		this.data = data;
+	}
 
 	public Stato getStato() {
 		return stato;
