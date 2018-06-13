@@ -9,4 +9,15 @@ app.service('offerteAttiveService',['$http', function ($http) {
             return response.data;
         });
     }
+    
+    this.findFirstOfferteByOggetto = function findFirstOfferteByOggetto(oggetto){
+        return $http({
+          method: 'POST',
+          url: 'rest/offerta/findFirstOfferteByOggetto',
+          data: oggetto,
+          headers: 'Accept:application/json'
+        }).then( function(response){
+            return response.data;
+        });
+    }
 }]);
