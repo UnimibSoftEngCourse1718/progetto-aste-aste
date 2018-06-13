@@ -4,6 +4,7 @@ import java.util.List;
 
 import aste.model.Offerta;
 import aste.model.Oggetto;
+import aste.model.Utente;
 
 public interface OffertaService {
 	     
@@ -19,6 +20,6 @@ public interface OffertaService {
 	    
 	    public List<Offerta> findAllOggettoInAsta();
 	    
+	    public List<Offerta> findAllOfferteByUtente(Utente idUtente);
 	    public Offerta getOffertaByOggetto(Oggetto idOggetto);
-	    
 }

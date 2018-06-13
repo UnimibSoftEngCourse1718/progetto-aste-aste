@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import aste.model.Offerta;
 import aste.model.Oggetto;
+import aste.model.Utente;
 import aste.service.OffertaService;
+import aste.service.UtenteService;
 import aste.utils.Constants;
 import aste.utils.ResponseObj;
 
@@ -21,7 +24,10 @@ import aste.utils.ResponseObj;
 public class OffertaController {
 
 	@Autowired
-	OffertaService offertaService;	
+	OffertaService offertaService;
+	
+	@Autowired
+	UtenteService utenteService;
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
@@ -50,4 +56,22 @@ public class OffertaController {
 			response.setMessage(Constants.NO_ELEMENTS);
         return response;
     }
+	
+	//trovare tutte le offerte attive di un utente
+	@RequestMapping(value = "/findAllOfferteUtente/{id}", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+    public ResponseObj<List<Offerta>> findAllOfferteUtente(@PathVariable Integer id) {
+		
+		ResponseObj<List<Offerta>> response = new ResponseObj<List<Offerta>>();
+		Utente utente = utenteService.getUser(id);
+		List<Offerta> offerte = offertaService.findAllOfferteByUtente(utente);
+		response.setEsito(Constants.OK);
+		
+		if(!offerte.isEmpty())
+			response.setData(offerte);
+		else
+			response.setMessage(Constants.NO_ELEMENTS);
+        return response;
+    }
+	
 }

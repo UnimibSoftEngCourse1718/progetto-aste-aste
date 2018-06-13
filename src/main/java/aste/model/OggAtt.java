@@ -17,8 +17,8 @@ public class OggAtt {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
-	private Integer idOgg_att;
+	@Column(name="idOgg_att")
+	private Integer idOggAtt;
 	
 	@Column
 	private String valore;
@@ -49,12 +49,12 @@ public class OggAtt {
 		this.attributo = attributo;
 	}
 
-	public Integer getIdOgg_att() {
-		return idOgg_att;
+	public Integer getIdOggAtt() {
+		return idOggAtt;
 	}
 
-	public void setIdOgg_att(Integer idOgg_att) {
-		this.idOgg_att = idOgg_att;
+	public void setIdOggAtt(Integer idOggAtt) {
+		this.idOggAtt = idOggAtt;
 	}
 
 	public Oggetto getOggetto() {

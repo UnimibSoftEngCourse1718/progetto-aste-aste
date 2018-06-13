@@ -23,6 +23,12 @@ app.config([ '$routeProvider', function($routeProvider) {
 	}).when('/dettaglio/:id', {
 		templateUrl : 'page/dettaglio.html',
 		controller : 'dettaglioController'
+	}).when('/credito', {
+		templateUrl : 'page/credito.html',
+		controller : 'creditoController'
+	}).when('/offerteAttive', {
+		templateUrl : 'page/offerteAttive.html',
+		controller : 'offerteAttiveController'
 	}).otherwise({
 		redirectTo : '/home'
 	});

@@ -34,7 +34,7 @@ app.controller('oggettoController', [
 						oggetto.utente = response.data;
 						oggetto.nome = $scope.nomeOggetto;
 						oggetto.categoria = $scope.categoria;
-						for (i = 0; i < $scope.listAttributi.length; i++) { 
+						for (let i = 0; i < $scope.listAttributi.length; i++) { 
 							var string = "attributo_"+i;
 							attributiValore[$scope.listAttributi[i].idAttributo] = $("#"+string).val();
 						}

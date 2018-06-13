@@ -1,16 +1,13 @@
 package aste.jparepository;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import aste.model.CatAtt;
+import aste.model.Credito;
 
 @Transactional
 @Repository
-public interface CatAttJpaRepository extends JpaRepository<CatAtt, Integer> {
-	List<CatAtt> findByCategoria(Integer categoria);
+public interface CreditoJpaRepository extends JpaRepository<Credito, Integer> {
 }

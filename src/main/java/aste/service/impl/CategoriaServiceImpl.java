@@ -1,4 +1,4 @@
-package aste.service;
+package aste.service.impl;
 
 import java.util.List;
 
@@ -13,6 +13,9 @@ import aste.jparepository.CategoriaJpaRepository;
 import aste.model.Attributo;
 import aste.model.CatAtt;
 import aste.model.Categoria;
+import aste.service.AttributoService;
+import aste.service.CatAttService;
+import aste.service.CategoriaService;
 
 @Service
 @Transactional

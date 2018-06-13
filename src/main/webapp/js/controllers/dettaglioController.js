@@ -34,11 +34,13 @@ app.controller('dettaglioController', [
 			offerta.importo = parseFloat($scope.importoOfferta);
 			offerta.idOggetto = oggetto;
 			offerta.idUtente = utente;
+			//Formato data per MySql
+			offerta.data =  (new Date ((new Date((new Date(new Date())).toISOString() )).getTime() - ((new Date()).getTimezoneOffset()*60000))).toISOString().slice(0, 19).replace('T', ' ');
 			
 			oggettoService.doOfferta(offerta).then(
 					function(response) {
-						if(response.esito == "OK") {
-							$window.alert("Offerta effattuata correttamente");
+						if(response.esito == "OK"){
+							$window.alert("Offerta effettuata correttamente");
 						} else{
 							$window.alert("Errore durante l'offerta: " + response.message);
 						}
