@@ -9,14 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Oggetto {
@@ -41,17 +41,11 @@ public class Oggetto {
 	@JoinColumn(name = "idCategoria")
 	private Categoria categoria;
 	
-	@ManyToMany(cascade = { 
-	        CascadeType.PERSIST, 
-	        CascadeType.MERGE
-	    })
-	    @JoinTable(name = "ogg_att",
-	        joinColumns = @JoinColumn(name = "idOggetto"),
-	        inverseJoinColumns = @JoinColumn(name = "idAttributo")
-	    )
-	@Fetch(FetchMode.JOIN)	
-	private List<Attributo> attributi;
-
+	@OneToMany(cascade = CascadeType.ALL,mappedBy="oggetto")
+	@Fetch(FetchMode.JOIN)
+	@JsonManagedReference
+    public List<OggAtt> oggAtt;
+	
 	public Integer getIdOggetto() {
 		return idOggetto;
 	}

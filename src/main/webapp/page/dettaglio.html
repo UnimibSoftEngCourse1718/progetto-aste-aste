@@ -11,8 +11,8 @@
 							<span>{{oggetto.categoria.nome}}</span>
 							<h3>{{oggetto.nome}}</h3>
 							<p>Descrizione</p>
-							<ul data-ng-repeat="x in oggetto.attributi" style="text-align: left;">
-								<li>{{x.nome}}: valore</li>
+							<ul data-ng-repeat="x in oggetto.oggAtt" style="text-align: left;">
+								<li>{{x.attributo.nome}}: {{x.valore}}</li>
 							</ul>
 							</br>
 							<span>
