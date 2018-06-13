@@ -16,7 +16,8 @@ app.controller('dettaglioController', [
 					function(response) {
 						if (response.esito == "OK") {
 							$scope.oggetto = response.data;
-							//funzione per calcolare il tempo rimanete dell'asta
+							// funzione per calcolare il tempo rimanete
+							// dell'asta
 							offerteAttiveService.findFirstOfferteByOggetto($scope.oggetto).then(
 									function(response) {
 										if (response.esito == "OK") {
@@ -56,8 +57,11 @@ app.controller('dettaglioController', [
 			offerta.importo = parseFloat($scope.importoOfferta);
 			offerta.idOggetto = $scope.oggetto;;
 			offerta.idUtente = utente;
-			//Formato data per MySql
-			//offerta.data =  (new Date ((new Date((new Date(new Date())).toISOString() )).getTime() - ((new Date()).getTimezoneOffset()*60000))).toISOString().slice(0, 19).replace('T', ' ');
+			// Formato data per MySql
+			// offerta.data = (new Date ((new Date((new Date(new
+			// Date())).toISOString() )).getTime() - ((new
+			// Date()).getTimezoneOffset()*60000))).toISOString().slice(0,
+			// 19).replace('T', ' ');
 			offerta.data = new Date();
 			oggettoService.doOfferta(offerta).then(
 					function(response) {
@@ -75,13 +79,15 @@ app.controller('dettaglioController', [
 							$window.alert("Errore durante l'offerta: " + response.message);
 						}
 					});
-			threadAsteService.run($scope.oggetto).then(function(response) {
-				if(response.esito == "OK"){
-					$window.alert("Oggetto " + $scope.oggetto.nome + " venduto");
-				} else{
-					$window.alert("Errore");
-				}
-			});
+			if($scope.astaTimeIniziale!=null){
+				threadAsteService.run($scope.oggetto).then(function(response) {
+					if(response.esito == "OK"){
+						$window.alert("Oggetto " + $scope.oggetto.nome + " venduto");
+					} else{
+						$window.alert("Errore");
+					}
+				});
+			}
 		}
 		
 	}]);
