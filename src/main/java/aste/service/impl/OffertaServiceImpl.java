@@ -21,9 +21,22 @@ public class OffertaServiceImpl implements OffertaService {
 	@Resource
 	OffertaJpaRepository offertaJpaRepository;
 
-	public void addOfferta(Offerta offerta) throws InterruptedException {
-		// Fare il controllo se esiste gia� un'offerta per l'oggetto
-		offertaJpaRepository.saveAndFlush(offerta);
+	public void addOfferta(Offerta offerta) throws Exception {
+		
+		// Prendere l'offerta maggiore relativa all'oggetto in esame
+		Offerta currentOfferta = offertaJpaRepository.findFirstByIdOggettoOrderByIdOffertaDesc(offerta.getIdOggetto());
+
+		if (currentOfferta != null) {
+			// Esiste già un'offerta per quell'oggetto.
+			// Controllo quale tra le due offerte è la più alta.
+			if (currentOfferta.getImporto() < offerta.getImporto()) 
+				offertaJpaRepository.saveAndFlush(offerta);
+			else
+				throw new Exception("L'importo deve essere maggiore all'offerta corrente!");
+
+		} else
+			offertaJpaRepository.saveAndFlush(offerta);
+		
 	}
 
 	public List<Offerta> getAllOggetti() {

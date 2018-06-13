@@ -72,7 +72,7 @@ app.controller('dettaglioController', [
 										}
 									});
 						} else{
-							$window.alert("Errore durante l'offerta");
+							$window.alert("Errore durante l'offerta: " + response.message);
 						}
 					});
 			threadAsteService.run($scope.oggetto).then(function(response) {

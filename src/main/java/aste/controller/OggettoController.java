@@ -21,7 +21,7 @@ import aste.utils.ResponseObj;
 public class OggettoController {
 
 	@Autowired
-	OggettoService oggettoService;	
+	OggettoService oggettoService;
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
