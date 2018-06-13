@@ -8,7 +8,7 @@ import aste.model.Utente;
 
 public interface OffertaService {
 	     
-	    public void addOfferta(Offerta offerta) throws InterruptedException;
+	    public void addOfferta(Offerta offerta) throws Exception;
 	 
 	    public List<Offerta> getAllOggetti();
 	 
