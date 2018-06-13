@@ -21,5 +21,5 @@ public interface OffertaService {
 	    public List<Offerta> findAllOggettoInAsta();
 	    
 	    public List<Offerta> findAllOfferteByUtente(Utente idUtente);
-	    public Offerta getOffertaByOggetto(Oggetto idOggetto);
+
 }
