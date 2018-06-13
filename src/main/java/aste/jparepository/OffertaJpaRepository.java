@@ -16,6 +16,7 @@ import aste.model.Utente;
 @Repository
 public interface OffertaJpaRepository extends JpaRepository<Offerta, Integer> {
 	List<Offerta> findByStato(Stato stato);
-	Offerta findByIdOggetto(Oggetto idOggetto);
 	List<Offerta> findByIdUtente(Utente utente);
+	Offerta findFirstByIdOggettoOrderByIdOfferta(Oggetto oggetto);
+	Offerta findFirstByIdOggettoOrderByIdOffertaDesc(Oggetto oggetto);
 }

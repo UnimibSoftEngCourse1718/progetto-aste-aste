@@ -65,4 +65,14 @@ public class OffertaServiceImpl implements OffertaService {
 		return offertaJpaRepository.findByIdUtente(idUtente);
 	}
 
+	public Offerta findFirstOfferteByOggetto(Oggetto oggetto) {
+		return offertaJpaRepository.findFirstByIdOggettoOrderByIdOfferta(oggetto);
+	}
+
+	public Offerta findFirstByIdOggettoOrderByIdOffertaDesc(Oggetto oggetto) {
+		return offertaJpaRepository.findFirstByIdOggettoOrderByIdOffertaDesc(oggetto);
+	}
+	
+	
+	
 }
