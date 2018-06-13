@@ -8,16 +8,13 @@
 					<div class="author">
 						<div class="author-inner animate-box" style="background-image: url(img/project-1.jpg);"></div>
 						<div class="desc animate-box">
-							<span>{{oggetto.idCategoria.nome}}</span>
+							<span>{{oggetto.categoria.nome}}</span>
 							<h3>{{oggetto.nome}}</h3>
 							<p>Descrizione</p>
-							<ul style="text-align: left;">
-								<li>Attributo 1 : valore</li>
-								<li>Attributo 2 : valore</li>
-								<li>Attributo 3 : valore</li>
-								<li>Attributo 4 : valore</li>
+							<ul data-ng-repeat="x in oggetto.attributi" style="text-align: left;">
+								<li>{{x.nome}}: valore</li>
 							</ul>
-							<br>
+							</br>
 							<span>
 								
 							</span>
