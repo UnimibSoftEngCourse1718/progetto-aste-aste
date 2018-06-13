@@ -28,6 +28,9 @@ public class Oggetto {
 	
 	@Column
 	private String nome;
+	
+	@Column
+	private Integer tempoAsta;
 
 	@ManyToOne
 	@JoinColumn(name = "idUtente")
@@ -57,6 +60,14 @@ public class Oggetto {
 		this.idOggetto = idOggetto;
 	}
 
+	public Integer getTempoAsta() {
+		return tempoAsta;
+	}
+
+	public void setTempoAsta(Integer tempoAsta) {
+		this.tempoAsta = tempoAsta;
+	}
+	
 	public String getNome() {
 		return nome;
 	}

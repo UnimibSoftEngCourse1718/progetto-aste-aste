@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import aste.jparepository.OffertaJpaRepository;
 import aste.model.Offerta;
 import aste.model.Offerta.Stato;
+import aste.model.Oggetto;
 import aste.model.Utente;
 import aste.service.OffertaService;
 
@@ -20,8 +21,8 @@ public class OffertaServiceImpl implements OffertaService {
 	@Resource
 	OffertaJpaRepository offertaJpaRepository;
 
-	public void addOfferta(Offerta offerta) {
-		// Fare il controllo se esiste gi√† un'offerta per l'oggetto
+	public void addOfferta(Offerta offerta) throws InterruptedException {
+		// Fare il controllo se esiste gia† un'offerta per l'oggetto
 		offertaJpaRepository.saveAndFlush(offerta);
 	}
 
@@ -47,6 +48,14 @@ public class OffertaServiceImpl implements OffertaService {
 
 	public List<Offerta> findAllOfferteByUtente(Utente idUtente) {
 		return offertaJpaRepository.findByIdUtente(idUtente);
+	}
+
+	public Offerta findFirstOfferteByOggetto(Oggetto oggetto) {
+		return offertaJpaRepository.findFirstByIdOggettoOrderByIdOfferta(oggetto);
+	}
+
+	public Offerta findFirstByIdOggettoOrderByIdOffertaDesc(Oggetto oggetto) {
+		return offertaJpaRepository.findFirstByIdOggettoOrderByIdOffertaDesc(oggetto);
 	}
 	
 	

@@ -30,7 +30,6 @@ public class Offerta {
 	private Float importo;
 	
 	@Column
-	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date data;
 
 	@ManyToOne
