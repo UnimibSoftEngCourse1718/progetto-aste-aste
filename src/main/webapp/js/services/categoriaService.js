@@ -9,4 +9,17 @@ app.service('categoriaService',['$http', function ($http) {
             return response.data;
         });
     }
+    
+    this.saveCat = function saveCat(cat){
+        return $http({
+          method: 'POST',
+          url: 'rest/categoria/save',
+          data: cat,
+          headers: 'Accept:application/json'
+        }).then( function(response){
+            return response.data;
+        } );
+    }
+    
+    
 }]);

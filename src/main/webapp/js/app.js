@@ -29,6 +29,9 @@ app.config([ '$routeProvider', function($routeProvider) {
 	}).when('/offerteAttive', {
 		templateUrl : 'page/offerteAttive.html',
 		controller : 'offerteAttiveController'
+	}).when('/creaCategoria', {
+		templateUrl : 'page/creaCategoria.html',
+		controller : 'categoriaController'
 	}).otherwise({
 		redirectTo : '/home'
 	});
