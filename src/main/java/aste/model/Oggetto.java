@@ -1,6 +1,6 @@
 package aste.model;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -44,7 +44,7 @@ public class Oggetto {
 	@OneToMany(cascade = CascadeType.ALL,mappedBy="oggetto")
 	@Fetch(FetchMode.JOIN)
 	@JsonManagedReference
-    public List<OggAtt> oggAtt;
+    public Set<OggAtt> oggAtt;
 	
 	public Integer getIdOggetto() {
 		return idOggetto;
