@@ -1,6 +1,6 @@
 package aste.model;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -35,17 +35,17 @@ public class Categoria {
 	        inverseJoinColumns = @JoinColumn(name = "idAttributo")
 	    )
 	@Fetch(FetchMode.JOIN)	
-	private List<Attributo> attributi;
+	private Set<Attributo> attributi;
 	
 	public Integer getIdCategoria() {
 		return idCategoria;
 	}	
 
-	public List<Attributo> getAttributi() {
+	public Set<Attributo> getAttributi() {
 		return attributi;
 	}
 
-	public void setAttributi(List<Attributo> attributi) {
+	public void setAttributi(Set<Attributo> attributi) {
 		this.attributi = attributi;
 	}
 

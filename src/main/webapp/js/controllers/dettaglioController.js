@@ -18,14 +18,7 @@ app.controller('dettaglioController', [
 							$scope.oggetto = response.data;
 							// funzione per calcolare il tempo rimanete
 							// dell'asta
-							offerteAttiveService.findFirstOfferteByOggetto($scope.oggetto).then(
-									function(response) {
-										if (response.esito == "OK") {
-											$scope.astaTimeIniziale = response.data;
-										} else {
-											$window.alert("Errore");
-										}
-									});
+							findFirstOfferteByOggetto($scope.oggetto);
 						} else {
 							$window.alert("Errore");
 						}
@@ -35,14 +28,27 @@ app.controller('dettaglioController', [
 
 		var astaTimeInterval = setInterval(astaTimeFunction, 1000);
 		
+		var findFirstOfferteByOggetto = function(oggetto){
+			offerteAttiveService.findFirstOfferteByOggetto(oggetto).then(	
+				function(response) {
+					if (response.esito == "OK") {
+						$scope.astaTimeIniziale = response.data;
+					} else {
+						$window.alert("Errore");
+					}
+				});
+		}
+		
 		function astaTimeFunction(){
-			var stamp = $scope.oggetto.tempoAsta - Math.round((new Date().valueOf() - $scope.astaTimeIniziale) / 1000 / 60) ;
+			var stamp = $scope.oggetto.tempoAsta - Math.floor((new Date().valueOf() - $scope.astaTimeIniziale) / 1000 / 60) ;
 			if($scope.astaTimeIniziale!=null){
+				var string = "Mancano: " + stamp + " minuti al termine dell'asta";
 				if(stamp<=0){
 					clearInterval(astaTimeInterval);
-					stamp = "VENDUTO";
+					string = "VENDUTO";
 				}
-				document.getElementById("demo").innerHTML = stamp;
+				
+				document.getElementById("demo").innerHTML = string;
 			}
 		}
 		
@@ -52,42 +58,43 @@ app.controller('dettaglioController', [
 			var utente = {};
 			utente.idUtente = $window.sessionStorage.USER_ID;
 			
-			var offerta = {};
-			offerta.stato = "ATTIVO";
-			offerta.importo = parseFloat($scope.importoOfferta);
-			offerta.idOggetto = $scope.oggetto;;
-			offerta.idUtente = utente;
-			// Formato data per MySql
-			// offerta.data = (new Date ((new Date((new Date(new
-			// Date())).toISOString() )).getTime() - ((new
-			// Date()).getTimezoneOffset()*60000))).toISOString().slice(0,
-			// 19).replace('T', ' ');
-			offerta.data = new Date();
-			oggettoService.doOfferta(offerta).then(
-					function(response) {
-						if(response.esito == "OK"){
-							$window.alert("Offerta effettuata correttamente");
-							offerteAttiveService.findFirstOfferteByOggetto($scope.oggetto).then(
-									function(response) {
-										if (response.esito == "OK") {
-											$scope.astaTimeIniziale = response.data;
-										} else {
-											$window.alert("Errore");
-										}
-									});
-						} else{
-							$window.alert("Errore durante l'offerta: " + response.message);
-						}
-					});
-			if($scope.astaTimeIniziale!=null){
-				threadAsteService.run($scope.oggetto).then(function(response) {
+  			var offerta = {};
+  			offerta.stato = "ATTIVO";
+  			offerta.importo = parseFloat($scope.importoOfferta);
+  			offerta.idOggetto = $scope.oggetto;
+  			offerta.idUtente = utente;
+  			// Formato data per MySql
+  			// offerta.data = (new Date ((new Date((new Date(new
+  			// Date())).toISOString() )).getTime() - ((new
+  			// Date()).getTimezoneOffset()*60000))).toISOString().slice(0,
+  			// 19).replace('T', ' ');
+  			offerta.data = new Date();
+  			findFirstOfferteByOggetto($scope.oggetto);
+  			oggettoService.doOfferta(offerta).then(
+				function(response) {
 					if(response.esito == "OK"){
-						$window.alert("Oggetto " + $scope.oggetto.nome + " venduto");
+						$window.alert("Offerta effettuata correttamente");
+						if($scope.astaTimeIniziale==null){
+							threadAsteService.run($scope.oggetto).then(function(response) {
+								if(response.esito == "OK"){
+									$window.alert("Oggetto " + $scope.oggetto.nome + " venduto");
+								} else{
+									$window.alert("Errore");
+								}
+							});
+							findFirstOfferteByOggetto($scope.oggetto);
+						}
+							
 					} else{
 						$window.alert("Errore");
 					}
-				});
-			}
+				}
+			);
 		}
+		
+		if ($window.sessionStorage.getItem('USER_USERNAME') != null) 
+			$scope.enabled = true;
+		else
+			$scope.enabled = false;
 		
 	}]);

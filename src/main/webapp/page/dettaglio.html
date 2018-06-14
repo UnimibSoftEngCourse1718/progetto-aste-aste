@@ -14,12 +14,12 @@
 							<ul data-ng-repeat="x in oggetto.oggAtt" style="text-align: left;">
 								<li>{{x.attributo.nome}}: {{x.valore}}</li>
 							</ul>
-							</br>
+							<br>
 							<span>
 								
 							</span>
 							<p id="demo"></p>
-							<span>
+							<span data-ng-show="enabled">
 								<input type="text" data-ng-model="importoOfferta" id="importoOfferta" name="importoOfferta">
 								<button data-ng-click="doOfferta()">Fai offerta!</button>
 							</span>

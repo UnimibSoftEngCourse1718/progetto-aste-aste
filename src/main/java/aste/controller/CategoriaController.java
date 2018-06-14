@@ -1,6 +1,7 @@
 package aste.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,10 +46,10 @@ public class CategoriaController {
 	
 	@RequestMapping(value = "/findCategoria", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
-    public ResponseObj<List<Attributo>> findAttributi(@RequestBody Categoria categoria) {
+    public ResponseObj<Set<Attributo>> findAttributi(@RequestBody Categoria categoria) {
 		
-		ResponseObj<List<Attributo>> response = new ResponseObj<List<Attributo>>();
-		List<Attributo> attributi = categoriaService.getCategoria(categoria.getIdCategoria()).getAttributi();
+		ResponseObj<Set<Attributo>> response = new ResponseObj<Set<Attributo>>();
+		Set<Attributo> attributi = categoriaService.getCategoria(categoria.getIdCategoria()).getAttributi();
 		
 		if(!attributi.isEmpty()) {
 			response.setEsito(Constants.OK);
