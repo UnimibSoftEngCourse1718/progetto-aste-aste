@@ -6,38 +6,63 @@ var app = angular.module('aste', []);
 app.config([ '$routeProvider', function($routeProvider) {
 
 	$routeProvider.when('/home', {
-		templateUrl : 'page/home.html',/*
-				controller : 'AsteController'*/
+		templateUrl : 'page/home.html',
+		controller : 'homeController'
 	}).when('/login', {
 		templateUrl : 'page/login.html',
-		controller : 'LoginController'
+		controller : 'loginController'
 	}).when('/registrati', {
 		templateUrl : 'page/registrati.html',
-		controller : 'LoginController'
+		controller : 'loginController'
+	}).when('/profilo', {
+		templateUrl : 'page/profilo.html',
+		controller : 'utenteController'
+	}).when('/aggiungiOgg', {
+		templateUrl : 'page/aggiungiOgg.html',
+		controller : 'oggettoController'
+	}).when('/dettaglio/:id', {
+		templateUrl : 'page/dettaglio.html',
+		controller : 'dettaglioController'
+	}).when('/credito', {
+		templateUrl : 'page/credito.html',
+		controller : 'creditoController'
+	}).when('/offerteAttive', {
+		templateUrl : 'page/offerteAttive.html',
+		controller : 'offerteAttiveController'
+	}).when('/creaCategoria', {
+		templateUrl : 'page/creaCategoria.html',
+		controller : 'categoriaController'
+	}).when('/mieiOggetti', {
+		templateUrl : 'page/mieiOggetti.html',
+		controller : 'mieiOggettiController'
 	}).otherwise({
 		redirectTo : '/home'
 	});
 	
 
-} ]);
+}]);
 
 app.run(['$rootScope', '$window',
     function($rootScope, $window){
         $rootScope.getSessionUser = function(){
-        	if($window.sessionStorage.getItem('USER')!= null){
+        	if($window.sessionStorage.getItem('USER_USERNAME')!= null){
         		$("#profilo").show();
         		$("#logout").show();
+        		$("#login").hide();
+        		$("#user").show();
         	}else{
-        		$("#logout").hide();
         		$("#profilo").hide();
+        		$("#logout").hide();
+        		$("#login").show();
+        		$("#user").hide();
         	}
         }
+        $rootScope.getSessionUser();
         
         $rootScope.logOut = function() {
-			$window.sessionStorage.removeItem("USER");
-    		$("#logout").hide();
-    		$("#profilo").hide();
-			alert("Log out");
+			$window.sessionStorage.removeItem("USER_USERNAME");
+			$window.sessionStorage.removeItem("USER_ID");
+			$rootScope.getSessionUser();
 		}
     }
 ]);

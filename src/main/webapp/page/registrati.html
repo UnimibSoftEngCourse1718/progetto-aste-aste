@@ -1,10 +1,41 @@
-<div ng-controller="LoginController">
-	
-	<div style="text-align:center">
-	
-		Username: <input type="text" data-ng-model="usernameR" id="usernameR" name="usernameR"><br>
-	 	Password: <input type="text" data-ng-model="passwordR" id="passwordR" name="passwordR"><br> <br>
-		<button data-ng-click="saveUser()">Registrati</button>
-	</div>
 
+<div id="fh5co-contact">
+	<div class="container">
+		<div class="row">
+			<h3>Registrati</h3>
+			<br>
+			<div class="row form-group">
+				<div class="col-md-12">
+					<label for="usernameR">Username:</label>
+					<input type="text" data-ng-model="usernameR" id="usernameR" name="usernameR">
+				</div>
+			</div>
+
+			<div class="row form-group">
+				<div class="col-md-12">
+					<label for="passwordR">Password:</label>
+					<input type="password" data-ng-model="passwordR" id="passwordR" name="passwordR">
+				</div>
+			</div>
+
+			<div class="row form-group">
+				<div class="col-md-12">
+					<label for="nome">Nome:</label>
+					<input type="text" data-ng-model="nome" id="nome" name="nome">
+				</div>
+			</div>
+			
+			<div class="row form-group">
+				<div class="col-md-12">
+					<label for="cognome">Cognome:</label>
+					<input type="text" data-ng-model="cognome" id="cognome" name="cognome">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<button data-ng-click="saveUser()" class="btn btn-primary">Registrati</button>
+			</div>
+
+		</div>
+	</div>
 </div>

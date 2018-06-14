@@ -1,0 +1,24 @@
+
+<div id="fh5co-contact">
+	<div class="container">
+		<div class="row">
+			<h3>Miei oggetti</h3>
+			<br>
+			
+			<div class="row">
+				<div data-ng-repeat="o in listOggetti" class="col-md-4 text-center animate-box">
+					<a class="work" href="#/dettaglio/{{o.idOggetto}}">
+						<div class="work-grid" style="background-image: url(img/project-1.jpg);">
+							<div class="inner">
+								<div class="desc">
+									<h3>{{o.nome}}</h3>
+									<span class="cat">{{o.categoria.nome}}</span><br>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

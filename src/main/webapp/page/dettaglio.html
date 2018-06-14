@@ -1,0 +1,48 @@
+
+<div id="pagina_dettaglio">
+	<div id="fh5co-author">
+		<div class="container">
+		
+			<div class="row">
+				<div class="row">
+					<div class="author">
+						<div class="author-inner animate-box" style="background-image: url(img/project-1.jpg);"></div>
+						<div class="desc animate-box">
+							<span>{{oggetto.categoria.nome}}</span>
+							<h3>{{oggetto.nome}}</h3>
+							<p>Descrizione</p>
+							<ul data-ng-repeat="x in oggetto.oggAtt" style="text-align: left;">
+								<li>{{x.attributo.nome}}: {{x.valore}}</li>
+							</ul>
+							<br>
+							<span>
+								
+							</span>
+							<p id="demo"></p>
+							<p>{{offerer}}</p>
+							<span data-ng-show="enabled && attivo">
+								<input type="text" data-ng-model="importoOfferta" id="importoOfferta" name="importoOfferta">
+								<button data-ng-click="doOfferta()">Fai offerta!</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="row row-pt-md portfolio-navigation">
+						<div class="col-xs-4 text-left">
+						</div>
+						<div class="col-xs-4 text-center">
+							<a href="#/home" class="btn btn-primary btn-outline"><i
+								class="icon-grid2"></i>Tutte le aste</a>
+						</div>
+						<div class="col-xs-4 text-right">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

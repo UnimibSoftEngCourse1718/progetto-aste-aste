@@ -1,32 +1,27 @@
-<div id="fh5co-work"><!-- 
+<div id="fh5co-work">
 	<div class="container">
 		<div class="row top-line animate-box">
 			<div class="col-md-7 col-md-push-5 text-left intro">
-				<h2>
-					Shift is a free html5 template to showcase your work. <span
-						class="fh5co-highlight">Made with <i class="icon-heart2"></i>
-						by <a href="http://freehtml5.co">FreeHTML5.co</a>
-					</span>
-				</h2>
+				<h2>Benvenuto sul portale di aste online</h2>
 			</div>
 
 		</div>
-		<!--  
-			<div class="row">
-				<div class="col-md-4 text-center animate-box">
-					<a class="work" href="portfolio_detail.html">
-						<div class="work-grid" style="background-image:url(images/project-1.jpg);">
-							<div class="inner">
-								<div class="desc">
-									<h3>Folding Light</h3>
-									<span class="cat">Branding</span>
-								</div>
+		<div class="row">
+			<div data-ng-repeat="oggetto in listOggetti" class="col-md-4 text-center animate-box">
+				<a class="work" href="#/dettaglio/{{oggetto.idOggetto}}">
+					<div class="work-grid" style="background-image: url(img/project-1.jpg);">
+						<div class="inner">
+							<div class="desc">
+								<h3>{{oggetto.nome}}</h3>
+								<span class="cat">{{oggetto.idCategoria.nome}}</span>
 							</div>
 						</div>
-					</a>
-				</div>				
+					</div>
+				</a>
 			</div>
-			
 		</div>
-		-->
+		<div data-ng-hide="listOggetti">Nessun elemento</div>
+
 	</div>
+
+</div>
