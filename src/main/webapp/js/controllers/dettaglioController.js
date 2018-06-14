@@ -42,11 +42,13 @@ app.controller('dettaglioController', [
 		function astaTimeFunction(){
 			var stamp = $scope.oggetto.tempoAsta - Math.floor((new Date().valueOf() - $scope.astaTimeIniziale) / 1000 / 60) ;
 			if($scope.astaTimeIniziale!=null){
+				var string = "Mancano: " + stamp + " minuti al termine dell'asta";
 				if(stamp<=0){
 					clearInterval(astaTimeInterval);
-					stamp = "VENDUTO";
+					string = "VENDUTO";
 				}
-				document.getElementById("demo").innerHTML =  stamp;
+				
+				document.getElementById("demo").innerHTML = string;
 			}
 		}
 		
