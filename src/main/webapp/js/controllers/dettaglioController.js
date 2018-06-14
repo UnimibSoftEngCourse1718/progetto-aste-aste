@@ -19,7 +19,6 @@ app.controller('dettaglioController', [
 							// funzione per calcolare il tempo rimanete
 							// dell'asta
 							findFirstOfferteByOggetto($scope.oggetto);
-							getMaxOfferta();
 						} else {
 							$window.alert("Errore");
 						}
@@ -29,7 +28,7 @@ app.controller('dettaglioController', [
 
 		var astaTimeInterval = setInterval(astaTimeFunction, 1000);
 		
-		var findFirstOfferteByOggetto = function(oggetto){
+		var findFirstOfferteByOggetto = function(oggetto) {
 			offerteAttiveService.findFirstOfferteByOggetto(oggetto).then(	
 				function(response) {
 					if (response.esito == "OK") {
@@ -42,7 +41,11 @@ app.controller('dettaglioController', [
 		
 		function astaTimeFunction(){
 			var stamp = $scope.oggetto.tempoAsta - Math.floor((new Date().valueOf() - $scope.astaTimeIniziale) / 1000 / 60) ;
-			if($scope.astaTimeIniziale!=null){
+
+			getMaxOfferta();
+			
+			if($scope.astaTimeIniziale!=null) {
+
 				var string = "Mancano: " + stamp + " minuti al termine dell'asta";
 				if(stamp<=0){
 					clearInterval(astaTimeInterval);
@@ -73,7 +76,6 @@ app.controller('dettaglioController', [
 				function(response) {
 					if(response.esito == "OK"){
 						$window.alert("Offerta effettuata correttamente");
-						getMaxOfferta();
 						if($scope.astaTimeIniziale==null){
 							threadAsteService.run($scope.oggetto).then(function(response) {
 								if(response.esito == "OK"){
