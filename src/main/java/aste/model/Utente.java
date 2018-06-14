@@ -46,7 +46,6 @@ public class Utente {
 	
 	@OneToMany(cascade = CascadeType.ALL,mappedBy="utente")
 	@Fetch(FetchMode.JOIN)	
-	@JsonManagedReference
     public Set<Oggetto> oggetto;
 
 	public Integer getIdUtente() {

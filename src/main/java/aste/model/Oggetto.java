@@ -16,13 +16,14 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @NamedQuery(name = "Oggetto.findAllNotVenduti",
 	query = "SELECT o FROM Oggetto o WHERE idOggetto NOT IN( SELECT idOggetto FROM Offerta off WHERE off.stato='VENDUTO')"
 )
+
 public class Oggetto {
 
 	@Id
@@ -38,11 +39,11 @@ public class Oggetto {
 
 	@ManyToOne
 	@JoinColumn(name = "idUtente")
-	@JsonBackReference
+	@JsonIgnoreProperties("oggetto")
 	private Utente utente;
 
 	@ManyToOne
-	@JoinColumn(name = "idCategoria")
+	@JoinColumn(name = "idCategoria")	
 	private Categoria categoria;
 	
 	@OneToMany(cascade = CascadeType.ALL,mappedBy="oggetto")
