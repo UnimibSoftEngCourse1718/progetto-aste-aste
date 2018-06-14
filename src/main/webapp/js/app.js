@@ -32,6 +32,9 @@ app.config([ '$routeProvider', function($routeProvider) {
 	}).when('/creaCategoria', {
 		templateUrl : 'page/creaCategoria.html',
 		controller : 'categoriaController'
+	}).when('/mieiOggetti', {
+		templateUrl : 'page/mieiOggetti.html',
+		controller : 'mieiOggettiController'
 	}).otherwise({
 		redirectTo : '/home'
 	});

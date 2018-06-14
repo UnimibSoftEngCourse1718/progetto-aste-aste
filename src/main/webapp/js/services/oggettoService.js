@@ -1,4 +1,5 @@
 app.service('oggettoService',['$http', function ($http) {
+	
     //Restituisce gli oggetti in asta
     this.oggettiInAsta = function oggettiInAsta(){
         return $http({
@@ -55,12 +56,23 @@ app.service('oggettoService',['$http', function ($http) {
         });
     }
     
-    // Chiamata a backend per offettuare 
+    // Chiamata a backend per offettuare un'offerta
     this.doOfferta = function doOfferta(offerta) {
         return $http({
           method: 'POST',
           url: 'rest/offerta/save',
           data: offerta,
+          headers: 'Accept:application/json'
+        }).then( function(response){
+            return response.data;
+        });
+    }
+    
+    // Chiamata a backend per ottenere gli oggetti di uno specifico utente
+    this.findOggettoByUserId = function findOggettoByUserId(id) {
+        return $http({
+          method: 'GET',
+          url: 'rest/oggetto/findByUserId/' + id,
           headers: 'Accept:application/json'
         }).then( function(response){
             return response.data;

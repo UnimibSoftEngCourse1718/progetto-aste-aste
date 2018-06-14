@@ -11,6 +11,7 @@ app.controller('dettaglioController', [
 		var utente = {};
 		
 		// Funzione per trovare un oggetto a partire da un id
+		$scope.attivo = true;
 		$scope.oggetto = {};
 		$scope.astaTime = null;
 		$scope.getOggetto = function() {
@@ -51,6 +52,7 @@ app.controller('dettaglioController', [
 
 				var string = "Mancano: " + stamp + " minuti al termine dell'asta";
 				if(stamp<=0){
+					$scope.attivo = false;
 					clearInterval(astaTimeInterval);
 					string = "VENDUTO";
 				}
@@ -118,11 +120,17 @@ app.controller('dettaglioController', [
 			offerteAttiveService.findMaxOffertaByOggetto($scope.oggetto).then(function(response) {
 				
 				if(response.esito == "OK") {
-
+					
 					offerta = response.data;
-
-					if (offerta)
-						$scope.offerer = "Offerta corrente: " + offerta.importo;
+					
+					if (offerta) {
+						if (offerta.stato == "VENDUTO") {
+							$scope.attivo = false;
+							$scope.offerer = "Offerta vincente: " + offerta.importo;
+						}
+						else
+							$scope.offerer = "Offerta corrente: " + offerta.importo;
+					}
 					else
 						$scope.offerer = "Nessuna offerta corrente";
 					
@@ -132,6 +140,8 @@ app.controller('dettaglioController', [
 				
 			});
 		}
+		
+		
 		
 		
 	}]);
