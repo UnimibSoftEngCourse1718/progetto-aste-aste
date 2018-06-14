@@ -11,15 +11,15 @@
 							<span>{{oggetto.categoria.nome}}</span>
 							<h3>{{oggetto.nome}}</h3>
 							<p>Descrizione</p>
-							<ul data-ng-repeat="x in oggetto.attributi" style="text-align: left;">
-								<li>{{x.nome}}: valore</li>
+							<ul data-ng-repeat="x in oggetto.oggAtt" style="text-align: left;">
+								<li>{{x.attributo.nome}}: {{x.valore}}</li>
 							</ul>
 							<br>
 							<span>
 								
 							</span>
 							<p id="demo"></p>
-							<span>
+							<span data-ng-show="enabled">
 								<input type="text" data-ng-model="importoOfferta" id="importoOfferta" name="importoOfferta">
 								<button data-ng-click="doOfferta()">Fai offerta!</button>
 							</span>

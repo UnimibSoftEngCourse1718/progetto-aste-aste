@@ -28,6 +28,13 @@
 						<li><a  href="#" id="logout" data-ng-click="logOut()" >Log out</a></li>
 					</ul>
 				</div>
+				
+				<div class="fh5co-top-social menu-1 text-right" id="user" data-ng-controller="loginController">
+					<ul class="fh5co-social">
+						<li><a href="#/profilo"><i><img src="img/user.png" height="30" width="30"></i></a></li>
+						<li><a href="#/profilo"><i>{{username}}</i></a></li>
+					</ul>
+				</div>
 			</div>
 		</nav>
 
@@ -48,6 +55,7 @@
 	<script src="js/controllers/oggettoController.js"></script>
 	<script src="js/controllers/creditoController.js"></script>
 	<script src="js/controllers/offerteAttiveController.js"></script>
+	<script src="js/controllers/categoriaController.js"></script>
 	<!-- Service -->
 	<script src="js/services/userService.js"></script>
 	<script src="js/services/oggettoService.js"></script>

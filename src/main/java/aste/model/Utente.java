@@ -1,6 +1,6 @@
 package aste.model;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -47,7 +47,7 @@ public class Utente {
 	@OneToMany(cascade = CascadeType.ALL,mappedBy="utente")
 	@Fetch(FetchMode.JOIN)	
 	@JsonManagedReference
-    public List<Oggetto> oggetto;
+    public Set<Oggetto> oggetto;
 
 	public Integer getIdUtente() {
 		return idUtente;

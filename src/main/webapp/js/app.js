@@ -29,6 +29,9 @@ app.config([ '$routeProvider', function($routeProvider) {
 	}).when('/offerteAttive', {
 		templateUrl : 'page/offerteAttive.html',
 		controller : 'offerteAttiveController'
+	}).when('/creaCategoria', {
+		templateUrl : 'page/creaCategoria.html',
+		controller : 'categoriaController'
 	}).otherwise({
 		redirectTo : '/home'
 	});
@@ -43,20 +46,20 @@ app.run(['$rootScope', '$window',
         		$("#profilo").show();
         		$("#logout").show();
         		$("#login").hide();
+        		$("#user").show();
         	}else{
         		$("#profilo").hide();
         		$("#logout").hide();
         		$("#login").show();
+        		$("#user").hide();
         	}
         }
         $rootScope.getSessionUser();
+        
         $rootScope.logOut = function() {
 			$window.sessionStorage.removeItem("USER_USERNAME");
 			$window.sessionStorage.removeItem("USER_ID");
-	    		$("#logout").hide();
-	    		$("#profilo").hide();
-	    		$("#login").show();
-	    		$window.alert("Log out");
+			$rootScope.getSessionUser();
 		}
     }
 ]);
