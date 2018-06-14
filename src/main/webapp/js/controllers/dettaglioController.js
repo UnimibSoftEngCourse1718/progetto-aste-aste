@@ -52,7 +52,7 @@ app.controller('dettaglioController', [
 
 				var string = "Mancano: " + stamp + " minuti al termine dell'asta";
 				if(stamp<=0){
-					$scope.attivo = false;
+					getMaxOfferta();
 					clearInterval(astaTimeInterval);
 					string = "VENDUTO";
 				}
