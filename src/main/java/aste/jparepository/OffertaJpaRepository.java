@@ -19,4 +19,5 @@ public interface OffertaJpaRepository extends JpaRepository<Offerta, Integer> {
 	List<Offerta> findByIdUtente(Utente utente);
 	Offerta findFirstByIdOggettoOrderByIdOfferta(Oggetto oggetto);
 	Offerta findFirstByIdOggettoOrderByIdOffertaDesc(Oggetto oggetto);
+	void deleteByIdOggettoAndStato(Oggetto oggetto,Stato stato);
 }

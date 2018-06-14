@@ -10,6 +10,8 @@ public interface OggettoService {
 	    public void addOggetto(OggettoAttributiBean oggettoAttributiBean);
 	 
 	    public List<Oggetto> getAllOggetti();
+	    
+	    public List<Oggetto> findAllNotVenduti();
 	 
 	    public void deleteOggetto(Integer oggettoId);
 	 
