@@ -22,11 +22,22 @@ app.service('oggettoService',['$http', function ($http) {
         });
     }
     
-    //Aggiunge oggetto
+    //findAll oggetto
     this.findAll = function findAll(){
         return $http({
           method: 'GET',
           url: 'rest/oggetto/findAll',
+          headers: 'Accept:application/json'
+        }).then( function(response){
+            return response.data;
+        });
+    }
+    
+    //findAll not venduti oggetto
+    this.findAllNotVenduti = function findAllNotVenduti(){
+        return $http({
+          method: 'GET',
+          url: 'rest/oggetto/findAllNotVenduti',
           headers: 'Accept:application/json'
         }).then( function(response){
             return response.data;

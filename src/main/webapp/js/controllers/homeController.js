@@ -17,8 +17,8 @@ app.controller('homeController', [
 					});
 		};
 		
-		$scope.findAll = function() {
-			oggettoService.findAll().then(
+		$scope.findAllNotVenduti = function() {
+			oggettoService.findAllNotVenduti().then(
 					function(response) {
 						if (response.esito == "OK") {
 							$scope.listOggetti = response.data;
@@ -27,7 +27,7 @@ app.controller('homeController', [
 						}
 					});
 		};
-		$scope.findAll();
+		$scope.findAllNotVenduti();
 
 	} 
 ]);

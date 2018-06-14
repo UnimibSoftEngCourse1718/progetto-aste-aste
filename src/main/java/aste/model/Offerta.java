@@ -87,7 +87,6 @@ public class Offerta {
 	}
 	
 	public enum Stato {
-	    PAGATO,
 	    VENDUTO,
 	    ATTIVO
 	}

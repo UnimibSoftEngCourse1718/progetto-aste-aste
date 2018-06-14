@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Fetch;
@@ -19,6 +20,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
+@NamedQuery(name = "Oggetto.findAllNotVenduti",
+	query = "SELECT o FROM Oggetto o WHERE idOggetto NOT IN( SELECT idOggetto FROM Offerta off WHERE off.stato='VENDUTO')"
+)
 public class Oggetto {
 
 	@Id
