@@ -3,6 +3,7 @@ package aste.service;
 import java.util.List;
 
 import aste.model.Offerta;
+import aste.model.Offerta.Stato;
 import aste.model.Oggetto;
 import aste.model.Utente;
 
@@ -25,4 +26,6 @@ public interface OffertaService {
 	    public Offerta findFirstOfferteByOggetto(Oggetto oggetto);
 	    
 	    public Offerta findFirstByIdOggettoOrderByIdOffertaDesc(Oggetto oggetto);
+	    
+	    public void deleteByIdOggettoAndStato(Oggetto oggetto,Stato stato);
 }

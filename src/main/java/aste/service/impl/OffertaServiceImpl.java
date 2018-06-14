@@ -70,6 +70,10 @@ public class OffertaServiceImpl implements OffertaService {
 	public Offerta findFirstByIdOggettoOrderByIdOffertaDesc(Oggetto oggetto) {
 		return offertaJpaRepository.findFirstByIdOggettoOrderByIdOffertaDesc(oggetto);
 	}
+
+	public void deleteByIdOggettoAndStato(Oggetto oggetto, Stato stato) {
+		offertaJpaRepository.deleteByIdOggettoAndStato(oggetto, stato);		
+	}
 	
 	
 	

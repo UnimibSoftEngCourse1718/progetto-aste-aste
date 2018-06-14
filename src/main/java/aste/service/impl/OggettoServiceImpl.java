@@ -66,4 +66,8 @@ public class OggettoServiceImpl implements OggettoService {
 	public List<Oggetto> findByNome(String nome) {
 		return oggettoJpaRepository.findByNome(nome);
 	}
+
+	public List<Oggetto> findAllNotVenduti() {
+		return oggettoJpaRepository.findAllNotVenduti();
+	}
 }

@@ -48,7 +48,8 @@ app.controller('dettaglioController', [
 					string = "VENDUTO";
 				}
 				
-				document.getElementById("demo").innerHTML = string;
+				if(document.getElementById("demo"))
+					document.getElementById("demo").innerHTML = string;
 			}
 		}
 		

@@ -20,6 +20,7 @@ public class ThreadAsteServiceImpl implements ThreadAsteService {
 		Offerta offerta = offertaService.findFirstByIdOggettoOrderByIdOffertaDesc(oggetto);
 		offerta.setStato(Stato.VENDUTO);
 		offertaService.updateOfferta(offerta);
+		offertaService.deleteByIdOggettoAndStato(oggetto, Stato.ATTIVO);
 	}
 
 }
