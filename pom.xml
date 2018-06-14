@@ -156,6 +156,6 @@
 	</dependencies>
 
 	<build>
-		<finalName>aste</finalName>
+		<finalName>aste</finalName>	
 	</build>
 </project>

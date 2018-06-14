@@ -18,5 +18,5 @@ public interface UtenteService {
 	    
 	    public Utente updateUser(Utente user);
 	    
-	    public List<Utente> getUserLogin(Utente user);
+	    public Utente getUserLogin(Utente user);
 }

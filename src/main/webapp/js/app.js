@@ -19,37 +19,47 @@ app.config([ '$routeProvider', function($routeProvider) {
 		controller : 'utenteController'
 	}).when('/aggiungiOgg', {
 		templateUrl : 'page/aggiungiOgg.html',
-		controller : 'loginController'
+		controller : 'oggettoController'
 	}).when('/dettaglio/:id', {
 		templateUrl : 'page/dettaglio.html',
-		controller : 'dettaglioController'	
+		controller : 'dettaglioController'
+	}).when('/credito', {
+		templateUrl : 'page/credito.html',
+		controller : 'creditoController'
+	}).when('/offerteAttive', {
+		templateUrl : 'page/offerteAttive.html',
+		controller : 'offerteAttiveController'
+	}).when('/creaCategoria', {
+		templateUrl : 'page/creaCategoria.html',
+		controller : 'categoriaController'
 	}).otherwise({
 		redirectTo : '/home'
 	});
 	
 
-} ]);
+}]);
 
 app.run(['$rootScope', '$window',
     function($rootScope, $window){
         $rootScope.getSessionUser = function(){
-        	if($window.sessionStorage.getItem('USER')!= null){
+        	if($window.sessionStorage.getItem('USER_USERNAME')!= null){
         		$("#profilo").show();
         		$("#logout").show();
         		$("#login").hide();
+        		$("#user").show();
         	}else{
         		$("#profilo").hide();
         		$("#logout").hide();
         		$("#login").show();
+        		$("#user").hide();
         	}
         }
+        $rootScope.getSessionUser();
         
         $rootScope.logOut = function() {
-			$window.sessionStorage.removeItem("USER");
-    		$("#logout").hide();
-    		$("#profilo").hide();
-    		$("#login").show();
-    		$window.alert("Log out");
+			$window.sessionStorage.removeItem("USER_USERNAME");
+			$window.sessionStorage.removeItem("USER_ID");
+			$rootScope.getSessionUser();
 		}
     }
 ]);

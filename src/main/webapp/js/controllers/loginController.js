@@ -3,7 +3,10 @@ app.controller('loginController', [
 		'$scope',
 		'$window',
 		'userService',
-		function($rootScope,$scope, $window, userService) {
+		function($rootScope, $scope, $window, userService) {
+			
+			$scope.username = $window.sessionStorage.getItem('USER_USERNAME');
+			
 			$scope.getUser = function() {
 				var user = {};
 				user.username = $scope.usernameL;
@@ -11,10 +14,11 @@ app.controller('loginController', [
 				userService.getUser(user).then(
 						function(response) {
 							if (response.esito == "OK") {
-								$window.alert("Ti sei Loggato");
-								$window.sessionStorage.setItem("USER",
-										response.data.username);
+								$window.sessionStorage.setItem("USER_ID", response.data.idUtente);
+								$window.sessionStorage.setItem("USER_USERNAME", response.data.username);
+								$scope.username = $window.sessionStorage.getItem('USER_USERNAME');
 								$rootScope.getSessionUser();
+								$window.location.reload();
 								$window.location.href = '#/home';
 							} else {
 								$window.alert("Le credenziali sono errate");
@@ -22,7 +26,7 @@ app.controller('loginController', [
 							}
 						});
 			}
-
+			
 			$scope.saveUser = function() {
 				var user = {};
 				user.username = $scope.usernameR;
@@ -33,7 +37,7 @@ app.controller('loginController', [
 				user.credito = 0;
 				userService.saveUser(user).then(function(response) {
 					if(response.esito == "OK"){
-						$window.alert("Ti sei Registrato");
+						$window.alert("Registrazione completata correttamente");
 						$window.location.href = '#/login';
 					}else{
 						$window.alert("Errore durante la registrazione");

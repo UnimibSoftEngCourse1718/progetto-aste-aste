@@ -1,4 +1,4 @@
-package aste.service;
+package aste.service.impl;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import aste.jparepository.UtenteJpaRepository;
 import aste.model.Utente;
+import aste.service.UtenteService;
 
 @Service
 @Transactional
@@ -37,7 +38,7 @@ public class UtenteServiceImpl implements UtenteService{
 	        return userJpaRepository.findByUsername(username);
 	    }
 	    
-	    public List<Utente> getUserLogin(Utente user) {
+	    public Utente getUserLogin(Utente user) {
 	        return userJpaRepository.findByUsernameAndPassword(user.getUsername(),user.getPassword());
 	    }
 	 

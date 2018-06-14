@@ -6,8 +6,8 @@
 			</div>
 
 		</div>
-		<div data-ng-repeat="oggetto in listOggettiInAsta" class="row">
-			<div class="col-md-4 text-center animate-box">
+		<div class="row">
+			<div data-ng-repeat="oggetto in listOggetti" class="col-md-4 text-center animate-box">
 				<a class="work" href="#/dettaglio/{{oggetto.idOggetto}}">
 					<div class="work-grid" style="background-image: url(img/project-1.jpg);">
 						<div class="inner">
@@ -20,6 +20,7 @@
 				</a>
 			</div>
 		</div>
+		<div data-ng-hide="listOggetti">Nessun elemento</div>
 
 	</div>
 

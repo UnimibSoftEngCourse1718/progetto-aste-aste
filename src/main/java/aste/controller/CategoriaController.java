@@ -1,9 +1,9 @@
 package aste.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,12 +34,22 @@ public class CategoriaController {
         return response;
     }
 	
-	@RequestMapping(value = "/findAttributi/{nomeCategoria}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/findAll", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-    public ResponseObj<List<Attributo>> findAttributi(@PathVariable String nomeCategoria) {
+    public ResponseObj<List<Categoria>> findAll() {
+		ResponseObj<List<Categoria>> response = new ResponseObj<List<Categoria>>();
+		List<Categoria> listCategoria = categoriaService.findAll();
+		response.setEsito(Constants.OK);
+		response.setData(listCategoria);
+        return response;
+    }
+	
+	@RequestMapping(value = "/findCategoria", method = RequestMethod.POST, produces = "application/json")
+	@ResponseBody
+    public ResponseObj<Set<Attributo>> findAttributi(@RequestBody Categoria categoria) {
 		
-		ResponseObj<List<Attributo>> response = new ResponseObj<List<Attributo>>();
-		List<Attributo> attributi = categoriaService.findAttributi(nomeCategoria);
+		ResponseObj<Set<Attributo>> response = new ResponseObj<Set<Attributo>>();
+		Set<Attributo> attributi = categoriaService.getCategoria(categoria.getIdCategoria()).getAttributi();
 		
 		if(!attributi.isEmpty()) {
 			response.setEsito(Constants.OK);

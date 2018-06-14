@@ -1,4 +1,30 @@
-
-<div style="text-align:center">
-	<h3>Aggiungi oggetto</h3>
+<div class="container">
+	<div class="row top-line animate-box">
+		<div class="col-md-7 col-md-push-5 text-left intro">
+			<h2>Aggiungi oggetto</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-7 col-md-push-5 text-left intro">
+			Nome Oggetto: <input type="text" data-ng-model="nomeOggetto">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-7 col-md-push-5 text-left intro">
+			Tempo asta: <input type="text" data-ng-model="tempoAsta">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-7 col-md-push-5 text-left intro">
+			Categoria: <select data-ng-model="categoria" data-ng-change="caricaAttributi()" data-ng-options="o.nome for o in listCategoria"></select>
+		</div>
+	</div>
+	<div class="row">
+		<div  data-ng-repeat="x in listAttributi" class="col-md-7 col-md-push-5 text-left intro">
+				{{x.nome}}<input type="text" id="attributo_{{$index}}"><br>
+		</div>		
+	</div>
+	<div class="row">
+		<button data-ng-click="aggiungiOggetto()">Aggiungi</button>	
+	</div>
 </div>

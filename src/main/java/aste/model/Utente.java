@@ -1,11 +1,20 @@
 package aste.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @NamedQuery(name = "utente.Login",
@@ -33,7 +42,12 @@ public class Utente {
     private String ruolo;
 	
 	@Column
-    private int credito;
+    private Float credito;
+	
+	@OneToMany(cascade = CascadeType.ALL,mappedBy="utente")
+	@Fetch(FetchMode.JOIN)	
+	@JsonManagedReference
+    public Set<Oggetto> oggetto;
 
 	public Integer getIdUtente() {
 		return idUtente;
@@ -91,14 +105,12 @@ public class Utente {
 		this.ruolo = ruolo;
 	}
 
-
-	public int getCredito() {
+	public Float getCredito() {
 		return credito;
 	}
 
-
-	public void setCredito(int credito) {
+	public void setCredito(Float credito) {
 		this.credito = credito;
 	}
-	
+
 }

@@ -20,12 +20,18 @@
 						<a href="#/home.html">Home</a>
 					</div>
 				</div>
-				<div class="fh5co-top-menu menu-1 text-center">
+				<div class="fh5co-top-menu menu-1 text-center" >
 					<ul>
-						<li><a href="#/view1">view1</a></li>
-						<li><a href="#/login" id="login">Login</a></li>
-						<li><a href="#/profilo" id="profilo" hidden="true">Profilo</a></li>
-						<li><a href="#" id="logout" data-ng-click="logOut()" hidden="true">Log out</a></li>
+						<li><a  href="#/login" id="login">Login</a></li>
+						<li><a  href="#/profilo" id="profilo" >Profilo</a></li>
+						<li><a  href="#" id="logout" data-ng-click="logOut()" >Log out</a></li>
+					</ul>
+				</div>
+				
+				<div class="fh5co-top-social menu-1 text-right" id="user" data-ng-controller="loginController">
+					<ul class="fh5co-social">
+						<li><a href="#/profilo"><i><img src="img/user.png" height="30" width="30"></i></a></li>
+						<li><a href="#/profilo"><i>{{username}}</i></a></li>
 					</ul>
 				</div>
 			</div>
@@ -45,9 +51,17 @@
 	<script src="js/controllers/homeController.js"></script>
 	<script src="js/controllers/dettaglioController.js"></script>
 	<script src="js/controllers/utenteController.js"></script>
+	<script src="js/controllers/oggettoController.js"></script>
+	<script src="js/controllers/creditoController.js"></script>
+	<script src="js/controllers/offerteAttiveController.js"></script>
+	<script src="js/controllers/categoriaController.js"></script>
 	<!-- Service -->
 	<script src="js/services/userService.js"></script>
 	<script src="js/services/oggettoService.js"></script>
+	<script src="js/services/categoriaService.js"></script>
+	<script src="js/services/creditoService.js"></script>
+	<script src="js/services/offerteAttiveService.js"></script>
+	<script src="js/services/threadAsteService.js"></script>
 	<!-- jQuery -->
 	<script src="lib/jquery.min.js"></script>
 	<!-- jQuery Easing -->

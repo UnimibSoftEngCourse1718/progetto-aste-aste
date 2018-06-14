@@ -1,5 +1,8 @@
 package aste.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,8 +10,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
+@NamedQuery(name = "Oggetto.findAllNotVenduti",
+	query = "SELECT o FROM Oggetto o WHERE idOggetto NOT IN( SELECT idOggetto FROM Offerta off WHERE off.stato='VENDUTO')"
+)
 public class Oggetto {
 
 	@Id
@@ -18,15 +32,24 @@ public class Oggetto {
 	
 	@Column
 	private String nome;
+	
+	@Column
+	private Integer tempoAsta;
 
 	@ManyToOne
-	@JoinColumn
-	private Utente idUtente;
+	@JoinColumn(name = "idUtente")
+	@JsonBackReference
+	private Utente utente;
 
 	@ManyToOne
-	@JoinColumn
-	private Categoria idCategoria;
-
+	@JoinColumn(name = "idCategoria")
+	private Categoria categoria;
+	
+	@OneToMany(cascade = CascadeType.ALL,mappedBy="oggetto")
+	@Fetch(FetchMode.JOIN)
+	@JsonManagedReference
+    public Set<OggAtt> oggAtt;
+	
 	public Integer getIdOggetto() {
 		return idOggetto;
 	}
@@ -35,6 +58,14 @@ public class Oggetto {
 		this.idOggetto = idOggetto;
 	}
 
+	public Integer getTempoAsta() {
+		return tempoAsta;
+	}
+
+	public void setTempoAsta(Integer tempoAsta) {
+		this.tempoAsta = tempoAsta;
+	}
+	
 	public String getNome() {
 		return nome;
 	}
@@ -43,20 +74,21 @@ public class Oggetto {
 		this.nome = nome;
 	}
 
-	public Utente getIdUtente() {
-		return idUtente;
+	public Utente getUtente() {
+		return utente;
 	}
 
-	public void setIdUtente(Utente idUtente) {
-		this.idUtente = idUtente;
+	public void setUtente(Utente utente) {
+		this.utente = utente;
 	}
 
-	public Categoria getIdCategoria() {
-		return idCategoria;
+	public Categoria getCategoria() {
+		return categoria;
 	}
 
-	public void setIdCategoria(Categoria idCategoria) {
-		this.idCategoria = idCategoria;
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
+
 	
 }

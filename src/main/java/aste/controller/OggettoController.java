@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import aste.bean.OggettoAttributiBean;
 import aste.model.Oggetto;
 import aste.service.OggettoService;
 import aste.utils.Constants;
@@ -20,15 +21,35 @@ import aste.utils.ResponseObj;
 public class OggettoController {
 
 	@Autowired
-	OggettoService oggettoService;	
+	OggettoService oggettoService;
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
-    public ResponseObj<Oggetto> save(@RequestBody Oggetto oggetto) {
+    public ResponseObj<Oggetto> save(@RequestBody OggettoAttributiBean oggettoAttributiBean) {
 		ResponseObj<Oggetto> response = new ResponseObj<Oggetto>();
-		oggettoService.addOggetto(oggetto);
+		oggettoService.addOggetto(oggettoAttributiBean);
 		response.setEsito(Constants.OK);
-		response.setData(oggetto);
+		response.setData(oggettoAttributiBean.getOggetto());
+        return response;
+    }
+	
+	@RequestMapping(value = "/findAllNotVenduti", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+    public ResponseObj<List<Oggetto>> findAllNotVenduti() {
+		ResponseObj<List<Oggetto>> response = new ResponseObj<List<Oggetto>>();
+		List<Oggetto> oggetti = oggettoService.findAllNotVenduti();
+		response.setEsito(Constants.OK);
+		response.setData(oggetti);
+        return response;
+    }
+	
+	@RequestMapping(value = "/findAll", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+    public ResponseObj<List<Oggetto>> findAll() {
+		ResponseObj<List<Oggetto>> response = new ResponseObj<List<Oggetto>>();
+		List<Oggetto> oggetti = oggettoService.getAllOggetti();
+		response.setEsito(Constants.OK);
+		response.setData(oggetti);
         return response;
     }
 	

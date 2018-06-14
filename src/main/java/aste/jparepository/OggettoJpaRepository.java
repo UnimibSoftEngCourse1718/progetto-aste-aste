@@ -13,4 +13,5 @@ import aste.model.Oggetto;
 @Repository
 public interface OggettoJpaRepository extends JpaRepository<Oggetto, Integer> {
 	List<Oggetto> findByNome(String nome);
+	List<Oggetto> findAllNotVenduti();
 }

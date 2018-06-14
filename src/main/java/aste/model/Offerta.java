@@ -1,5 +1,7 @@
 package aste.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -25,6 +27,9 @@ public class Offerta {
 	@Column
 	private Float importo;
 	
+	@Column
+	private Date data;
+
 	@ManyToOne
 	@JoinColumn(name="idOggetto")
 	private Oggetto idOggetto;
@@ -40,7 +45,14 @@ public class Offerta {
 	public void setIdOfferta(Integer idOfferta) {
 		this.idOfferta = idOfferta;
 	}
+	
+	public Date getData() {
+		return data;
+	}
 
+	public void setData(Date data) {
+		this.data = data;
+	}
 
 	public Stato getStato() {
 		return stato;
@@ -75,7 +87,6 @@ public class Offerta {
 	}
 	
 	public enum Stato {
-	    PAGATO,
 	    VENDUTO,
 	    ATTIVO
 	}
