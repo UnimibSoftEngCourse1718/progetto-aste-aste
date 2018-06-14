@@ -4,8 +4,11 @@ app.controller('dettaglioController', [
 	'oggettoService',
 	'offerteAttiveService',
 	'threadAsteService',
+	'userService',
 	'$routeParams',
-	function($scope, $window, oggettoService, offerteAttiveService, threadAsteService, $routeParams) {
+	function($scope, $window, oggettoService,offerteAttiveService,threadAsteService,userService, $routeParams) {
+		
+		var utente = {};
 		
 		// Funzione per trovare un oggetto a partire da un id
 		$scope.oggetto = {};
@@ -57,41 +60,48 @@ app.controller('dettaglioController', [
 			}
 		}
 		
-		// Funzione per fare un'offerta
-		$scope.doOfferta = function() {
-			
-			var utente = {};
-			utente.idUtente = $window.sessionStorage.USER_ID;
-			
-  			var offerta = {};
-  			offerta.stato = "ATTIVO";
-  			offerta.importo = parseFloat($scope.importoOfferta);
-  			offerta.idOggetto = $scope.oggetto;
-  			offerta.idUtente = utente;
-  			offerta.data = new Date();
-  			
-  			findFirstOfferteByOggetto($scope.oggetto);
-  			
-  			oggettoService.doOfferta(offerta).then(
+		userService.getUtente($window.sessionStorage.USER_USERNAME).then(	
 				function(response) {
-					if(response.esito == "OK"){
-						$window.alert("Offerta effettuata correttamente");
-						if($scope.astaTimeIniziale==null){
-							threadAsteService.run($scope.oggetto).then(function(response) {
-								if(response.esito == "OK"){
-									$window.alert("Oggetto " + $scope.oggetto.nome + " venduto");
-								} else{
-									$window.alert("Errore");
-								}
-							});
-							findFirstOfferteByOggetto($scope.oggetto);
-						}
-							
-					} else{
+					if (response.esito == "OK") {
+						utente = response.data;
+					} else {
 						$window.alert("Errore");
 					}
-				}
-			);
+				});
+		
+		// Funzione per fare un'offerta
+		$scope.doOfferta = function() {			
+			
+			if(utente.credito>=parseFloat($scope.importoOfferta)){
+	  			var offerta = {};
+	  			offerta.stato = "ATTIVO";
+	  			offerta.importo = parseFloat($scope.importoOfferta);
+	  			offerta.idOggetto = $scope.oggetto;
+	  			offerta.idUtente = utente;
+	  			offerta.data = new Date();
+	  			findFirstOfferteByOggetto($scope.oggetto);
+	  			oggettoService.doOfferta(offerta).then(
+					function(response) {
+						if(response.esito == "OK"){
+							$window.alert("Offerta effettuata correttamente");
+							if($scope.astaTimeIniziale==null){
+								threadAsteService.run($scope.oggetto).then(function(response) {
+									if(response.esito == "OK"){
+										$window.alert("Oggetto " + $scope.oggetto.nome + " venduto");
+									} else{
+										$window.alert("Errore");
+									}
+								});
+								findFirstOfferteByOggetto($scope.oggetto);
+							}
+								
+						}else{
+							$window.alert("Errore");
+						}
+					}
+				);
+			}else
+				$window.alert("Non hai abbastanza credito");
 		}
 		
 		// Mi serve per capire se mostrare o no l'immagine e il nome dell'utente connesso

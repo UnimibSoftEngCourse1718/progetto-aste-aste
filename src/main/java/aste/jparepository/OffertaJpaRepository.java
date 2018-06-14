@@ -17,6 +17,7 @@ import aste.model.Utente;
 public interface OffertaJpaRepository extends JpaRepository<Offerta, Integer> {
 	List<Offerta> findByStato(Stato stato);
 	List<Offerta> findByIdUtente(Utente utente);
+	List<Offerta> findByIdOggettoOrderByIdOffertaDesc(Oggetto oggetto);
 	Offerta findFirstByIdOggettoOrderByIdOfferta(Oggetto oggetto);
 	Offerta findFirstByIdOggettoOrderByIdOffertaDesc(Oggetto oggetto);
 	void deleteByIdOggettoAndStato(Oggetto oggetto,Stato stato);
