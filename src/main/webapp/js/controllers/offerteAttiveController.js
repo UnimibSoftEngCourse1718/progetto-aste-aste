@@ -16,6 +16,5 @@ app.controller('offerteAttiveController', [
 					});
 		}
 		$scope.getOfferta();
-		
 	}
 ]);

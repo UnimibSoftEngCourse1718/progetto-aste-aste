@@ -91,5 +91,20 @@ public class OffertaController {
 			response.setMessage(Constants.NO_ELEMENTS);
 		return response;
 	}
+	
+	// Trova la massima offerta ad un oggetto
+	@RequestMapping(value = "/findMaxOfferteByOggetto", method = RequestMethod.POST, produces = "application/json")
+	@ResponseBody
+	public ResponseObj<Offerta> findMaxOfferteByOggetto(@RequestBody Oggetto oggetto) {
 
+		ResponseObj<Offerta> response = new ResponseObj<Offerta>();
+		Offerta offerta = offertaService.findFirstByIdOggettoOrderByIdOffertaDesc(oggetto);
+
+		response.setEsito(Constants.OK);
+		if (offerta!=null)
+			response.setData(offerta);
+		else
+			response.setMessage(Constants.NO_ELEMENTS);
+		return response;
+	}
 }

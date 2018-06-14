@@ -5,7 +5,7 @@ app.controller('dettaglioController', [
 	'offerteAttiveService',
 	'threadAsteService',
 	'$routeParams',
-	function($scope, $window, oggettoService,offerteAttiveService,threadAsteService, $routeParams) {
+	function($scope, $window, oggettoService, offerteAttiveService, threadAsteService, $routeParams) {
 		
 		// Funzione per trovare un oggetto a partire da un id
 		$scope.oggetto = {};
@@ -19,6 +19,7 @@ app.controller('dettaglioController', [
 							// funzione per calcolare il tempo rimanete
 							// dell'asta
 							findFirstOfferteByOggetto($scope.oggetto);
+							getMaxOfferta();
 						} else {
 							$window.alert("Errore");
 						}
@@ -64,17 +65,15 @@ app.controller('dettaglioController', [
   			offerta.importo = parseFloat($scope.importoOfferta);
   			offerta.idOggetto = $scope.oggetto;
   			offerta.idUtente = utente;
-  			// Formato data per MySql
-  			// offerta.data = (new Date ((new Date((new Date(new
-  			// Date())).toISOString() )).getTime() - ((new
-  			// Date()).getTimezoneOffset()*60000))).toISOString().slice(0,
-  			// 19).replace('T', ' ');
   			offerta.data = new Date();
+  			
   			findFirstOfferteByOggetto($scope.oggetto);
+  			
   			oggettoService.doOfferta(offerta).then(
 				function(response) {
 					if(response.esito == "OK"){
 						$window.alert("Offerta effettuata correttamente");
+						getMaxOfferta();
 						if($scope.astaTimeIniziale==null){
 							threadAsteService.run($scope.oggetto).then(function(response) {
 								if(response.esito == "OK"){
@@ -93,9 +92,34 @@ app.controller('dettaglioController', [
 			);
 		}
 		
+		// Mi serve per capire se mostrare o no l'immagine e il nome dell'utente connesso
 		if ($window.sessionStorage.getItem('USER_USERNAME') != null) 
 			$scope.enabled = true;
 		else
 			$scope.enabled = false;
+		
+		
+		function getMaxOfferta() {
+			// Cerco l'offerta maggiore corrente
+			var offerta = {};
+			
+			offerteAttiveService.findMaxOffertaByOggetto($scope.oggetto).then(function(response) {
+				
+				if(response.esito == "OK") {
+
+					offerta = response.data;
+
+					if (offerta)
+						$scope.offerer = "Offerta corrente: " + offerta.importo;
+					else
+						$scope.offerer = "Nessuna offerta corrente";
+					
+				}
+				else
+					$window.alert("Errore");
+				
+			});
+		}
+		
 		
 	}]);
