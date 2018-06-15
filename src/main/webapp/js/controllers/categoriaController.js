@@ -37,8 +37,16 @@ app.controller('categoriaController', [
 		
 		$scope.aggiungitext = function(){
 			var j = i+1;
-            $("#myform").append("Attributo "+ j +": <input type='text' id='att"+ i +"' name='att"+ i +"' data-ng-model='att"+ i +"'/></br>");
-                i++;
+            $("#myform").append("<div id='div"+i+"'>Attributo "+ j +": <input type='text' id='att"+ i +"'/></br></div>");
+            i++;
+        }	
+		
+		$scope.rimuovitext = function(){
+			
+			if(i>0) {
+				i--;
+				$("#div"+i).remove();
+			}
         }	
 	}
 ]);
