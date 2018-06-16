@@ -8,18 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
-@NamedQuery(name = "utente.Login",
-query = "SELECT u FROM Utente u"
-)
 public class Utente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

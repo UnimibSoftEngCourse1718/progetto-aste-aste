@@ -21,7 +21,7 @@ public class ThreadAsteServiceImpl implements ThreadAsteService {
 	UtenteService utenteService;
 	
 	public void runThread(Oggetto oggetto) throws InterruptedException {
-		Thread.sleep(oggetto.getTempoAsta()*60*1000);
+		Thread.sleep(oggetto.getTempoAsta()*60*1000l);
 		Offerta offerta = offertaService.findFirstByIdOggettoOrderByIdOffertaDesc(oggetto);
 		offerta.setStato(Stato.VENDUTO);
 		offertaService.updateOfferta(offerta);

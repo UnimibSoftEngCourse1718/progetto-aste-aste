@@ -17,7 +17,7 @@ app.controller('categoriaController', [
 		
 			cat.attributi = [];
 			
-			for(a=0;a<i;a++)
+			for(let a=0;a<i;a++)
 			{
 				var att = {};
 				att.nome = $("#att"+a).val();

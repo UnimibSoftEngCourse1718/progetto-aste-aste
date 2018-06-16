@@ -102,8 +102,9 @@ app.controller('dettaglioController', [
 						}
 					}
 				);
-			}else
-				$window.alert("Non hai abbastanza credito");
+			}else{
+				$window.alert("Non hai abbastanza credito");				
+			}
 		}
 		
 		// Mi serve per capire se mostrare o no l'immagine e il nome dell'utente connesso

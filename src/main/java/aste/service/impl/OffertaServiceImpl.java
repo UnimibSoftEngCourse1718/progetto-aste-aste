@@ -26,7 +26,7 @@ public class OffertaServiceImpl implements OffertaService {
 	@Autowired
 	UtenteService utenteService;
 
-	public void addOfferta(Offerta offerta) throws Exception {
+	public void addOfferta(Offerta offerta){
 		
 		// Prendere l'offerta maggiore relativa all'oggetto in esame
 		Offerta currentOfferta = offertaJpaRepository.findFirstByIdOggettoOrderByIdOffertaDesc(offerta.getIdOggetto());
@@ -46,7 +46,7 @@ public class OffertaServiceImpl implements OffertaService {
 				utenteService.updateUser(utente2);
 			}
 			else
-				throw new Exception("L'importo deve essere maggiore all'offerta corrente!");
+				throw new IllegalArgumentException("L'importo deve essere maggiore all'offerta corrente!");
 
 		} else{
 			offertaJpaRepository.saveAndFlush(offerta);

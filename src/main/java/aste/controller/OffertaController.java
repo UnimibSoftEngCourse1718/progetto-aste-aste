@@ -32,7 +32,7 @@ public class OffertaController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
-	public ResponseObj<Offerta> save(@RequestBody Offerta offerta) throws Exception {
+	public ResponseObj<Offerta> save(@RequestBody Offerta offerta){
 		ResponseObj<Offerta> response = new ResponseObj<Offerta>();
 		offertaService.addOfferta(offerta);
 		response.setEsito(Constants.OK);
