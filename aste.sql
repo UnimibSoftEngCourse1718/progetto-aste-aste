@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `aste` /*!40100 DEFAULT CHARACTER SET utf8mb4 COL
 USE `aste`;
 -- MySQL dump 10.13  Distrib 8.0.11, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: aste
+-- Host: localhost    Database: aste
 -- ------------------------------------------------------
 -- Server version	8.0.11
 
@@ -28,7 +28,7 @@ CREATE TABLE `attributo` (
   `idAttributo` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(45) NOT NULL,
   PRIMARY KEY (`idAttributo`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `attributo` (
 
 LOCK TABLES `attributo` WRITE;
 /*!40000 ALTER TABLE `attributo` DISABLE KEYS */;
-INSERT INTO `attributo` VALUES (1,'attributoProva'),(2,'attributoProva'),(3,'attributoProva'),(4,'attributoProva'),(5,'attributoFinale');
+INSERT INTO `attributo` VALUES (6,'Cilindrata'),(7,'Marca'),(8,'Anno'),(9,'Km'),(10,'Marca'),(11,'Ram'),(12,'Processore'),(13,'Scheda Grafica'),(14,'Hard Disk');
 /*!40000 ALTER TABLE `attributo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,7 +57,7 @@ CREATE TABLE `cat_att` (
   KEY `fk_cat_att_categoria1_idx` (`idCategoria`),
   CONSTRAINT `fk_cat_att_attributo1` FOREIGN KEY (`idAttributo`) REFERENCES `attributo` (`idattributo`),
   CONSTRAINT `fk_cat_att_categoria1` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idcategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `cat_att` (
 
 LOCK TABLES `cat_att` WRITE;
 /*!40000 ALTER TABLE `cat_att` DISABLE KEYS */;
-INSERT INTO `cat_att` VALUES (1,5,8),(2,4,8),(3,1,8),(4,2,8);
+INSERT INTO `cat_att` VALUES (1,6,9),(2,7,9),(3,8,9),(4,9,9),(5,10,10),(6,11,10),(7,12,10),(8,13,10),(9,14,10);
 /*!40000 ALTER TABLE `cat_att` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,7 +82,7 @@ CREATE TABLE `categoria` (
   `nome` varchar(45) NOT NULL,
   PRIMARY KEY (`idCategoria`),
   UNIQUE KEY `nome_UNIQUE` (`nome`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +91,7 @@ CREATE TABLE `categoria` (
 
 LOCK TABLES `categoria` WRITE;
 /*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
-INSERT INTO `categoria` VALUES (7,'dsf'),(6,'dsfsd'),(2,'NUovaCat'),(8,'provaFInale'),(4,'sacsa'),(1,'Videogames');
+INSERT INTO `categoria` VALUES (9,'Auto'),(10,'Computer');
 /*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,7 +110,7 @@ CREATE TABLE `credito` (
   PRIMARY KEY (`idCredito`),
   KEY `fk_credito_utente_idx` (`idUtente`),
   CONSTRAINT `fk_credito_utente` FOREIGN KEY (`idUtente`) REFERENCES `utente` (`idutente`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,7 +119,7 @@ CREATE TABLE `credito` (
 
 LOCK TABLES `credito` WRITE;
 /*!40000 ALTER TABLE `credito` DISABLE KEYS */;
-INSERT INTO `credito` VALUES (1,1,12,2),(2,1,12,2),(3,1,12,2),(4,1,12,2),(5,1,12,2),(6,1,12,2),(7,1,12,2),(8,1,12,2),(9,1,12,2),(10,1,12,2),(11,1,12,2),(12,1,1,2),(13,0,1,2),(14,0,1,2),(15,0,1,2),(16,0,1,2),(17,0,1,2),(18,0,1,2),(19,0,1,2);
+INSERT INTO `credito` VALUES (1,1,100,1),(2,1,100,1),(3,0,100,1);
 /*!40000 ALTER TABLE `credito` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,12 +136,13 @@ CREATE TABLE `offerta` (
   `importo` float DEFAULT NULL,
   `idOggetto` int(11) NOT NULL,
   `idUtente` int(11) NOT NULL,
+  `data` datetime DEFAULT NULL,
   PRIMARY KEY (`idOfferta`),
   KEY `fk_offerta_oggetto1_idx` (`idOggetto`),
   KEY `fk_offerta_utente1_idx` (`idUtente`),
   CONSTRAINT `fk_offerta_oggetto1` FOREIGN KEY (`idOggetto`) REFERENCES `oggetto` (`idoggetto`),
   CONSTRAINT `fk_offerta_utente1` FOREIGN KEY (`idUtente`) REFERENCES `utente` (`idutente`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,7 +151,6 @@ CREATE TABLE `offerta` (
 
 LOCK TABLES `offerta` WRITE;
 /*!40000 ALTER TABLE `offerta` DISABLE KEYS */;
-INSERT INTO `offerta` VALUES (2,'ATTIVO',10,2,1);
 /*!40000 ALTER TABLE `offerta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -171,7 +171,7 @@ CREATE TABLE `ogg_att` (
   KEY `fk_ogg_att_oggetto1_idx` (`idOggetto`),
   CONSTRAINT `fk_ogg_att_attributo1` FOREIGN KEY (`idAttributo`) REFERENCES `attributo` (`idattributo`),
   CONSTRAINT `fk_ogg_att_oggetto1` FOREIGN KEY (`idOggetto`) REFERENCES `oggetto` (`idoggetto`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,7 +180,7 @@ CREATE TABLE `ogg_att` (
 
 LOCK TABLES `ogg_att` WRITE;
 /*!40000 ALTER TABLE `ogg_att` DISABLE KEYS */;
-INSERT INTO `ogg_att` VALUES (1,'bello',1,7),(2,'reale',2,7);
+INSERT INTO `ogg_att` VALUES (1,'1400',6,11),(2,'Opel',7,11),(3,'2005',8,11),(4,'80000',9,11);
 /*!40000 ALTER TABLE `ogg_att` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -196,12 +196,13 @@ CREATE TABLE `oggetto` (
   `nome` varchar(45) NOT NULL,
   `idUtente` int(11) NOT NULL,
   `idCategoria` int(11) NOT NULL,
+  `tempoAsta` int(11) DEFAULT NULL,
   PRIMARY KEY (`idOggetto`),
   KEY `fk_oggetto_utente1_idx` (`idUtente`),
   KEY `fk_oggetto_categoria1_idx` (`idCategoria`),
   CONSTRAINT `fk_oggetto_categoria1` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idcategoria`),
   CONSTRAINT `fk_oggetto_utente1` FOREIGN KEY (`idUtente`) REFERENCES `utente` (`idutente`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -210,7 +211,7 @@ CREATE TABLE `oggetto` (
 
 LOCK TABLES `oggetto` WRITE;
 /*!40000 ALTER TABLE `oggetto` DISABLE KEYS */;
-INSERT INTO `oggetto` VALUES (2,'fifa18',1,1),(3,'pes18',1,1),(4,'asfas',1,1),(7,'fifa18',1,1),(8,'xc',2,8),(9,'Oggetto1',2,8),(10,'Prova2',2,8);
+INSERT INTO `oggetto` VALUES (11,'Opel Corsa',1,9,2);
 /*!40000 ALTER TABLE `oggetto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,7 +232,7 @@ CREATE TABLE `utente` (
   `ruolo` enum('reg','manager','admin') NOT NULL,
   PRIMARY KEY (`idUtente`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -240,7 +241,7 @@ CREATE TABLE `utente` (
 
 LOCK TABLES `utente` WRITE;
 /*!40000 ALTER TABLE `utente` DISABLE KEYS */;
-INSERT INTO `utente` VALUES (1,'admin','admin','admin','admin',0,'reg'),(2,'Stefano','Fratea','ste','fra',216,'reg');
+INSERT INTO `utente` VALUES (1,'admin','admin','admin','admin',100,'reg'),(3,'User','User','user','password',0,'reg');
 /*!40000 ALTER TABLE `utente` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -253,4 +254,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-11 16:48:15
+-- Dump completed on 2018-06-15 17:54:15
