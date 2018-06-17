@@ -35,6 +35,9 @@ app.config([ '$routeProvider', function($routeProvider) {
 	}).when('/mieiOggetti', {
 		templateUrl : 'page/mieiOggetti.html',
 		controller : 'mieiOggettiController'
+	}).when('/oggVinti', {
+		templateUrl : 'page/oggVinti.html',
+		controller : 'oggettiVintiController'
 	}).otherwise({
 		redirectTo : '/home'
 	});

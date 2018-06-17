@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import aste.model.Offerta;
+import aste.model.Offerta.Stato;
 import aste.model.Oggetto;
 import aste.model.Utente;
 import aste.service.OffertaService;
@@ -54,6 +55,23 @@ public class OffertaController {
 		response.setEsito(Constants.OK);
 		if (!oggettiInAsta.isEmpty())
 			response.setData(oggettiInAsta);
+		else
+			response.setMessage(Constants.NO_ELEMENTS);
+		return response;
+	}
+	
+	// trovare tutte le offerte attive di un utente
+	@RequestMapping(value = "/findOggettiVinti/{id}", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	public ResponseObj<List<Offerta>> findOggettiVinti(@PathVariable Integer id) {
+
+		ResponseObj<List<Offerta>> response = new ResponseObj<List<Offerta>>();
+		Utente utente = utenteService.getUser(id);
+		List<Offerta> offerte = offertaService.findAllOggettiVinti(utente,Stato.VENDUTO);
+		
+		response.setEsito(Constants.OK);
+		if (!offerte.isEmpty())
+			response.setData(offerte);
 		else
 			response.setMessage(Constants.NO_ELEMENTS);
 		return response;

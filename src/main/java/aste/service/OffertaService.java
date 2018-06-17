@@ -23,6 +23,8 @@ public interface OffertaService {
 	    
 	    public List<Offerta> findAllOfferteByUtente(Utente idUtente);
 	    
+	    public List<Offerta> findAllOggettiVinti(Utente idUtente, Stato stato);
+	    	    
 	    public Offerta findFirstOfferteByOggetto(Oggetto oggetto);
 	    
 	    public Offerta findFirstByIdOggettoOrderByIdOffertaDesc(Oggetto oggetto);

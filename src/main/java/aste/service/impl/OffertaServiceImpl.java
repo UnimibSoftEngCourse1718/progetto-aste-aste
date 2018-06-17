@@ -81,6 +81,10 @@ public class OffertaServiceImpl implements OffertaService {
 	public List<Offerta> findAllOfferteByUtente(Utente idUtente) {
 		return offertaJpaRepository.findByIdUtente(idUtente);
 	}
+	
+	public List<Offerta> findAllOggettiVinti(Utente idUtente, Stato stato) {
+		return offertaJpaRepository.findByIdUtenteAndStato(idUtente, stato);
+	}
 
 	public Offerta findFirstOfferteByOggetto(Oggetto oggetto) {
 		return offertaJpaRepository.findFirstByIdOggettoOrderByIdOfferta(oggetto);

@@ -11,6 +11,17 @@ app.service('offerteAttiveService',['$http', function ($http) {
         });
     }
     
+    //Restituisce le offerte attive di un utente
+    this.getOggVinti = function getOggVinti(id){
+        return $http({
+          method: 'GET',
+          url: 'rest/offerta/findOggettiVinti/'+ id,
+          headers: 'Accept:application/json'
+        }).then( function(response){
+            return response.data;
+        });
+    }    
+    
     this.findFirstOfferteByOggetto = function findFirstOfferteByOggetto(oggetto){
         return $http({
           method: 'POST',
